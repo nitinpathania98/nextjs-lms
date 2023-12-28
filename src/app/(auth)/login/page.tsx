@@ -66,7 +66,7 @@ function Login() {
         //         toast.error("Something went wrong");
         //     }
         // }
-        axios.post("http://192.168.1.16/api/User/Login", formdata)
+        axios.post("http://192.168.1.16/api/User/login", formdata)
             .then((res) => {
                 setLoading(false)
                 if (res.status == 200) {

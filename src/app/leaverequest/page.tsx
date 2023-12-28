@@ -33,7 +33,7 @@ const LeaveRequest = () => {
         e.preventDefault();
         try {
 
-            const url = `${BASE_URL}User/LeaveRequest`;
+            const url = `${BASE_URL}User/leaveRequest`;
             const response: any = await RequestLeave(url, formdata);
             alert("Submit Request Leave : ")
             toast.success("Leave request submitted successfully")
