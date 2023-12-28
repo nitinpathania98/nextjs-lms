@@ -43,7 +43,7 @@ const Sidebar: React.FC = () => {
 
     return (
         <>
-            <div className="sidebar__wrapper">
+            <div className="sidebar__wrapper ">
                 <button className="btn" onClick={toggleSidebarcollapse}>
                     {isCollapsed ? <MdKeyboardArrowRight /> : <MdKeyboardArrowLeft />}
                 </button>

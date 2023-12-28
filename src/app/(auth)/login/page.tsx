@@ -30,70 +30,70 @@ function Login() {
     const onLogin = async (e: any) => {
         e.preventDefault();
         setLoading(true)
-        // console.log(formdata)
-        // try {
-        //     const url = `${BASE_URL}User/Login`;
-        //     const response: any = await UserLogin(url, formdata);
-        //     console.log("response",response);
-        //     if (response.status === 200) {
-        //         setLoading(false);
-        //         toast.success("User loged In");
-        //         signIn("credentials", {
-        //             email: formdata.email,
-        //             password: formdata.password,
-        //             callbackUrl: "/",
-        //             redirect: true,
-        //         })
-        //     }
-        // } catch (error: any) {
-        //     setLoading(false);
-        //     const response: any = error.response.status;
-        //     console.log(response, "error status")
-        //     if (response === 400) {
-        //         toast.error("Check the validations");
-        //         setLoading(false);
-        //         const message: any = error.response.data.errors;
-        //         console.log(message, "error message")
-        //         setErrors((prevState: registerErrorType) => {
-        //             let updatedErrors: any = { ...prevState };
-        //             Object.keys(message).forEach((key) => {
-        //                 updatedErrors[key] = message[key][0];
-        //             });
-        //             return updatedErrors;
-        //         });
-        //     } else {
-        //         setLoading(false);
-        //         toast.error("Something went wrong");
-        //     }
-        // }
-        axios.post("http://192.168.1.16/api/User/login", formdata)
-            .then((res) => {
-                setLoading(false)
-                if (res.status == 200) {
-                    toast.success("User loged In");
-                    signIn("credentials", {
-                        email: formdata.email,
-                        password: formdata.password,
-                        callbackUrl: "/",
-                        redirect: true,
-                    })
-                }
-            })
-            .catch((error) => {
+        console.log(formdata)
+        try {
+            const url = `${BASE_URL}User/Login`;
+            const response: any = await UserLogin(url, formdata);
+            console.log("response", response);
+            if (response.status === 200) {
                 setLoading(false);
-                let message = error;
-                console.log("message", message)
-                if (message) {
-                    setErrors((prevState: registerErrorType) => {
-                        let updatedErrors: any = { ...prevState };
-                        Object.keys(message).forEach((key) => {
-                            updatedErrors[key] = message[key][0];
-                        });
-                        return updatedErrors;
+                toast.success("User loged In");
+                signIn("credentials", {
+                    email: formdata.email,
+                    password: formdata.password,
+                    callbackUrl: "/",
+                    redirect: true,
+                })
+            }
+        } catch (error: any) {
+            setLoading(false);
+            const response: any = error.response;
+            console.log(response, "error status")
+            if (response === 400) {
+                toast.error("Check the validations");
+                setLoading(false);
+                const message: any = error.response.data.errors;
+                console.log(message, "error message")
+                setErrors((prevState: registerErrorType) => {
+                    let updatedErrors: any = { ...prevState };
+                    Object.keys(message).forEach((key) => {
+                        updatedErrors[key] = message[key][0];
                     });
-                }
-                toast.error(" something went wrong")
-            });
+                    return updatedErrors;
+                });
+            } else {
+                setLoading(false);
+                toast.error("Something went wrong");
+            }
+        }
+        // axios.post("http://192.168.1.16/api/User/Login", formdata)
+        //     .then((res) => {
+        //         setLoading(false)
+        //         if (res.status == 200) {
+        //             toast.success("User loged In");
+        //             signIn("credentials", {
+        //                 email: formdata.email,
+        //                 password: formdata.password,
+        //                 callbackUrl: "/",
+        //                 redirect: true,
+        //             })
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         setLoading(false);
+        //         let message = error;
+        //         console.log("message", message)
+        //         if (message) {
+        //             setErrors((prevState: registerErrorType) => {
+        //                 let updatedErrors: any = { ...prevState };
+        //                 Object.keys(message).forEach((key) => {
+        //                     updatedErrors[key] = message[key][0];
+        //                 });
+        //                 return updatedErrors;
+        //             });
+        //         }
+        //         toast.error(" something went wrong")
+        //     });
     }
 
     return (

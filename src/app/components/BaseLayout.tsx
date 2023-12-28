@@ -7,7 +7,7 @@ interface BaseLayoutProps {
 
 const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
     return (<>
-        <div className="layout">
+        <div className="layout ">
             <Sidebar />
             <main className="layout__main-content">{children}</main>
         </div>

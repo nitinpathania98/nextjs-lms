@@ -35,51 +35,56 @@ const Details: React.FC = () => {
 
     //   fetchData();
     // }, []);
-    axios.get("http://192.168.1.16/api/User")
+    axios.get("http://192.168.1.16/api/UserDetail")
       .then((res) => {
         setEmployeeDetails(res.data)
         console.log(res.data);
-        
+
       })
   }, [])
 
   return (
-    <BaseLayout>
-      <div className="sticky">
-        <Navbar />
-      </div>
+    <>
+      <BaseLayout>
+        <div className="sticky">
+          <Navbar />
+        </div>
 
-      <div className="flex items-center justify-center">
-        <div className="bg-gray-200 p-4 rounded-md shadow-md w-full max-w-md">
-          <h2 className="text-xl font-bold mb-4">Employee Details</h2>
-          <h3 className="mt-1 max-w-2xl text-bold text-gray-500">
-            This is the information about the employee.
-          </h3>
+        <div className="flex items-center justify-center">
+          <div className="bg-gray-200 p-4 rounded-md shadow-md w-full max-w-md">
+            <h2 className="text-xl font-bold mb-4">Employee Details</h2>
+            <h3 className="mt-1 max-w-2xl text-bold text-gray-500">
+              This is the information about the employee.
+            </h3>
 
-          {/* Display details fetched from the API */}
-          <div className="container py-5 px-5">
-            <div className="row">
+            {/* Display details fetched from the API */}
+            <div className="container py-5 px-5">
+              <div className="row">
 
-              {employeeDetails.map((result, index) => (
-                <div key={index} className="col-lg-4 border px-2 py-2">
-                  <p className="font-semibold">Name: {result.name}</p>
-                  <p>Email: {result.email}</p>
-                  <p>Password: {result.password}</p>
-                  <p>Designation: {result.designation}</p>
-                  <p>Department: {result.department}</p>
-                  <p>PhoneNumber: {result.phoneNumber}</p>
-                  <p>Country: {result.country}</p>
-                  <p>City: {result.city}</p>
-                  <p>State: {result.state}</p>
-                  <p>Address: {result.address}</p>
-                </div>
-              ))}
+                {employeeDetails.map((result, index) => (
+                  <div key={index} className="col-lg-4 border px-2 py-2">
+                    <p className="font-semibold">Name: {result.name}</p>
+                    <p>Email: {result.email}</p>
+                    <p>Password: {result.password}</p>
+                    <p>Designation: {result.designation}</p>
+                    <p>Department: {result.department}</p>
+                    <p>PhoneNumber: {result.phoneNumber}</p>
+                    <p>Country: {result.country}</p>
+                    <p>City: {result.city}</p>
+                    <p>State: {result.state}</p>
+                    <p>Address: {result.address}</p>
+                  </div>
+                ))}
 
+              </div>
             </div>
           </div>
+
+
+      
         </div>
-      </div>
-    </BaseLayout>
+      </BaseLayout>
+    </>
   );
 };
 

@@ -33,7 +33,7 @@ const LeaveRequest = () => {
         e.preventDefault();
         try {
 
-            const url = `${BASE_URL}User/leaveRequest`;
+            const url = `${BASE_URL}User/LeaveRequest`;
             const response: any = await RequestLeave(url, formdata);
             alert("Submit Request Leave : ")
             toast.success("Leave request submitted successfully")
@@ -51,7 +51,8 @@ const LeaveRequest = () => {
     return (
         <BaseLayout>
             <Navbar />
-            <div className="p-6">
+            
+            {/* <div className="p-6">
                 <div className="bg-gray-200 p-4 rounded-md shadow-md mb-6">
                     <h2 className="text-xl font-bold mb-4">Leave Request</h2>
                     <form onSubmit={handleLeaveRequest} method="POST" >
@@ -133,7 +134,94 @@ const LeaveRequest = () => {
                         )}
                     </div>
                 </div>
+            </div> */}
+
+            <div className='w-auto'>
+                <div className='p-5'>
+                    <div className="flex flex-wrap justify-center w-full p-2">
+                        {/* Leave Request */}
+                        <div className="relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200">
+                            <div className="card p-3 rounded-lg">
+                                <h2 className="text-xl font-bold mb-4">Leave Request</h2>
+                                <form onSubmit={handleLeaveRequest} method="POST" className="grid grid-cols-2 gap-6 px-2">
+                                    <div className="flex items-center justify-between py-2 col-span-3">
+                                        <span className="font-semibold">Remaining Leaves:</span>
+                                        <span className="text-blue-500">{remainingLeaves}</span>
+                                    </div>
+                                    <div className="flex items-center justify-between py-2 col-span-3">
+                                        <label className="font-semibold">Leave Type:</label>
+                                        <select
+                                            name='leaveType'
+                                            required
+                                            value={formdata.leaveType}
+                                            onChange={DataChange}
+                                            className="cursor-pointer  p-2 border border-gray-300 rounded-md"
+                                        >
+                                            <option value="fullLeave">Full Leave</option>
+                                            <option value="medicalLeave">Medical Leave</option>
+                                            <option value="halfDayLeave">Half Day Leave</option>
+                                            <option value="shortLeave">Short Leave</option>
+                                        </select>
+                                    </div>
+                                    <div className="flex items-center justify-between py-2">
+                                        <label className="font-semibold">Start Date:</label>
+                                        <input
+                                            type="date"
+                                            name='startDate'
+                                            value={formdata.startDate}
+                                            onChange={DataChange}
+                                            required
+                                            className="cursor-pointer  p-2 border border-gray-300 rounded-md"
+                                        />
+                                    </div>
+                                    <div className="flex items-center justify-between py-2">
+                                        <label className="font-semibold">End Date:</label>
+                                        <input
+                                            type="date"
+                                            name='endDate'
+                                            value={formdata.endDate}
+                                            onChange={DataChange}
+                                            required
+                                            className="cursor-pointer  p-2 border border-gray-300 rounded-md"
+                                        />
+                                    </div>
+                                    <div className="flex items-center justify-between py-2 col-span-3">
+                                        <label className="font-semibold">Leave Reason:</label>
+                                        <textarea
+                                            name='leaveReason'
+                                            value={formdata.leaveReason}
+                                            onChange={DataChange}
+                                            required
+                                            className="cursor-pointer  p-2 border border-gray-300 rounded-md"
+                                        />
+                                    </div>
+                                    <div className="py-2 px-2 col-span-3">
+                                        <button
+                                            type='submit'
+                                            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+                                        >
+                                            Submit Leave Request
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        {/* Leave Status */}
+                        {/* <div className=" relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200">
+                            <div className="card p-3 rounded-lg">
+                                <h2 className="text-xl font-bold mb-4">Leave Status</h2>
+                                <div className="py-2">
+                                    {leaveStatus && (
+                                        <div className="text-green-500">{leaveStatus}</div>
+                                    )}
+                                </div>
+                            </div>
+                        </div> */}
+                    </div>
+                </div>
             </div>
+
 
         </BaseLayout>
     );
