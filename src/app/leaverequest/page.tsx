@@ -51,7 +51,7 @@ const LeaveRequest = () => {
     return (
         <BaseLayout>
             <Navbar />
-            
+
             {/* <div className="p-6">
                 <div className="bg-gray-200 p-4 rounded-md shadow-md mb-6">
                     <h2 className="text-xl font-bold mb-4">Leave Request</h2>
@@ -140,15 +140,12 @@ const LeaveRequest = () => {
                 <div className='p-5'>
                     <div className="flex flex-wrap justify-center w-full p-2">
                         {/* Leave Request */}
-                        <div className="relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200">
+                        <div className="relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200" style={{"width":"50%"}}>
                             <div className="card p-3 rounded-lg">
                                 <h2 className="text-xl font-bold mb-4">Leave Request</h2>
                                 <form onSubmit={handleLeaveRequest} method="POST" className="grid grid-cols-2 gap-6 px-2">
-                                    <div className="flex items-center justify-between py-2 col-span-3">
-                                        <span className="font-semibold">Remaining Leaves:</span>
-                                        <span className="text-blue-500">{remainingLeaves}</span>
-                                    </div>
-                                    <div className="flex items-center justify-between py-2 col-span-3">
+                                    
+                                    <div className="flex items-center justify-between py-2 col-span-3 mr-15">
                                         <label className="font-semibold">Leave Type:</label>
                                         <select
                                             name='leaveType'
@@ -163,7 +160,7 @@ const LeaveRequest = () => {
                                             <option value="shortLeave">Short Leave</option>
                                         </select>
                                     </div>
-                                    <div className="flex items-center justify-between py-2">
+                                    <div className="flex items-center justify-between py-2 col-span-3">
                                         <label className="font-semibold">Start Date:</label>
                                         <input
                                             type="date"
@@ -174,7 +171,7 @@ const LeaveRequest = () => {
                                             className="cursor-pointer  p-2 border border-gray-300 rounded-md"
                                         />
                                     </div>
-                                    <div className="flex items-center justify-between py-2">
+                                    <div className="flex items-center justify-between py-2 col-span-3">
                                         <label className="font-semibold">End Date:</label>
                                         <input
                                             type="date"
@@ -192,10 +189,10 @@ const LeaveRequest = () => {
                                             value={formdata.leaveReason}
                                             onChange={DataChange}
                                             required
-                                            className="cursor-pointer  p-2 border border-gray-300 rounded-md"
+                                            className="cursor-pointer  p-2 border border-gray-300 rounded-md resize-x"
                                         />
                                     </div>
-                                    <div className="py-2 px-2 col-span-3">
+                                    <div className="py-2  col-span-3">
                                         <button
                                             type='submit'
                                             className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"

@@ -35,7 +35,7 @@ const Details: React.FC = () => {
 
     //   fetchData();
     // }, []);
-    axios.get("http://192.168.1.16/api/UserDetail")
+    axios.get("http://192.168.1.16/api/User/UserDetail")
       .then((res) => {
         setEmployeeDetails(res.data)
         console.log(res.data);
@@ -57,7 +57,7 @@ const Details: React.FC = () => {
               This is the information about the employee.
             </h3>
 
-            {/* Display details fetched from the API */}
+
             <div className="container py-5 px-5">
               <div className="row">
 
@@ -81,8 +81,22 @@ const Details: React.FC = () => {
           </div>
 
 
-      
+
         </div>
+        {/* <div className="bg-gray-200  container">
+          <div className="row">
+            <div className="container">
+              <div className="flex justify-between">
+                <div><h2>Your Info</h2></div>
+                <div><h3>Change Password</h3></div>
+
+              </div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div> */}
       </BaseLayout>
     </>
   );
