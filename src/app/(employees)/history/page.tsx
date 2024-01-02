@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import BaseLayout from '@/app/components/BaseLayout';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 import axios from 'axios';
 
 const History = () => {
@@ -16,7 +16,7 @@ const History = () => {
 
     const mockLeaveHistory: any = [
         {
-            id: 1,
+            id: 16,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -24,7 +24,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 38423e6,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -32,7 +32,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 24846,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -40,7 +40,7 @@ const History = () => {
             status: 'Pending',
         },
         {
-            id: 1,
+            id: 148,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -48,7 +48,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 34,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -56,7 +56,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 28468,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -64,7 +64,7 @@ const History = () => {
             status: 'Pending',
         },
         {
-            id: 1,
+            id: 1607846,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -72,7 +72,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 3807767,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -80,7 +80,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 25123,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -88,7 +88,7 @@ const History = () => {
             status: 'Pending',
         },
         {
-            id: 1,
+            id: 12452,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -96,7 +96,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 32643,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -104,7 +104,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 22356,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -112,7 +112,7 @@ const History = () => {
             status: 'Pending',
         },
         {
-            id: 1,
+            id: 1135,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -120,7 +120,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 31625,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -128,7 +128,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 2354,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -136,7 +136,7 @@ const History = () => {
             status: 'Pending',
         },
         {
-            id: 1,
+            id: 153,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -144,7 +144,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 37564543,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -152,7 +152,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 21221,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -160,7 +160,7 @@ const History = () => {
             status: 'Pending',
         },
         {
-            id: 1,
+            id: 11221,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -168,7 +168,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 31221,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -176,7 +176,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 212,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -184,7 +184,7 @@ const History = () => {
             status: 'Pending',
         },
         {
-            id: 1,
+            id: 112,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -192,7 +192,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 312,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -200,7 +200,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 2112342,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -208,7 +208,7 @@ const History = () => {
             status: 'Pending',
         },
         {
-            id: 1,
+            id: 11,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -216,7 +216,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 31,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -224,7 +224,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 21,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -232,7 +232,7 @@ const History = () => {
             status: 'Pending',
         },
         {
-            id: 1,
+            id: 122,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -240,7 +240,7 @@ const History = () => {
             status: 'Approved',
         },
         {
-            id: 3,
+            id: 322,
             leaveType: 'Full Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',
@@ -248,7 +248,7 @@ const History = () => {
             status: 'Reject',
         },
         {
-            id: 2,
+            id: 22,
             leaveType: 'Half Leave',
             startDate: '2023-01-01',
             endDate: '2023-01-05',

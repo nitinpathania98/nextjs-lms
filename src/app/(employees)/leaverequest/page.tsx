@@ -2,7 +2,7 @@
 // components/LeaveRequest.tsx
 import React, { useState } from 'react';
 import BaseLayout from '@/app/components/BaseLayout';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 import toast, { Toaster } from 'react-hot-toast'
 import { BASE_URL } from '@/services/baseUrl';
 import { RequestLeave } from '@/services/api';
@@ -140,11 +140,11 @@ const LeaveRequest = () => {
                 <div className='p-5'>
                     <div className="flex flex-wrap justify-center w-full p-2">
                         {/* Leave Request */}
-                        <div className="relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200" style={{"width":"50%"}}>
+                        <div className="relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200" style={{ "width": "50%" }}>
                             <div className="card p-3 rounded-lg">
                                 <h2 className="text-xl font-bold mb-4">Leave Request</h2>
                                 <form onSubmit={handleLeaveRequest} method="POST" className="grid grid-cols-2 gap-6 px-2">
-                                    
+
                                     <div className="flex items-center justify-between py-2 col-span-3 mr-15">
                                         <label className="font-semibold">Leave Type:</label>
                                         <select

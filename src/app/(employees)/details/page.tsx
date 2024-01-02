@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BaseLayout from "@/app/components/BaseLayout";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 
 interface EmployeeDetails {
   name: string;
@@ -39,6 +39,9 @@ const Details: React.FC = () => {
         console.log(res.data);
 
       })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      });
   }, [])
 
   return (

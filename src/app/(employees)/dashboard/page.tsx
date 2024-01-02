@@ -1,12 +1,10 @@
 import React from 'react'
 import BaseLayout from '@/app/components/BaseLayout'
-import Navbar from '../components/Navbar'
-import { Calendar, momentLocalizer } from 'react-big-calendar'
+import Navbar from '../../components/Navbar'
 import { MdPendingActions } from 'react-icons/md';
 import { GrCompliance } from "react-icons/gr";
 import { SiVirustotal } from "react-icons/si";
 import { CgUnavailable } from "react-icons/cg";
-import { CiMedicalCase } from "react-icons/ci";
 import { FaHourglassHalf, FaBriefcaseMedical } from "react-icons/fa";
 import { FaArrowDownShortWide } from "react-icons/fa6";
 
@@ -26,10 +24,7 @@ const DashboardPage = () => {
                                     <div className="text-textColor text-lg mx-2">Employee Details</div>
                                 </div>
 
-                                <button className="flex items-center text-white text-lg  text-center p-2">
-
-                                    Month
-                                </button>
+                                <button className="flex items-center text-white text-sm text-center bg-themeColor p-2 rounded-lg"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="text-white mx-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> <div>January 2, 2024</div></button>
                             </div>
 
                             {/* Employee Information Section */}

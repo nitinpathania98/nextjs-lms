@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { AiOutlineHome } from "react-icons/ai";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdHistory, MdRequestPage } from "react-icons/md";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdHistory, MdRequestPage, MdOutlineSettingsApplications, MdCreate } from "react-icons/md";
 import { TbListDetails } from "react-icons/tb";
 import Link from "next/link";
 import { useContext } from "react";
@@ -33,6 +33,16 @@ const sidebarItems: SidebarItem[] = [
         name: "Employee Details",
         href: "/details",
         icon: TbListDetails,
+    },
+    {
+        name: "Leave Applications",
+        href: "/leaveApplications",
+        icon: MdOutlineSettingsApplications,
+    },
+    {
+        name: "Create Employee",
+        href: "/createEmployee",
+        icon: MdCreate,
     },
 
 ];
