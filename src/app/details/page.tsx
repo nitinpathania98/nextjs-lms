@@ -1,7 +1,5 @@
 "use client"
-// components/Details.tsx
-// components/Details.tsx
-// components/Details.tsx
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BaseLayout from "@/app/components/BaseLayout";
@@ -24,9 +22,9 @@ const Details: React.FC = () => {
   const [employeeDetails, setEmployeeDetails] = useState<EmployeeDetails[]>([]);
 
   useEffect(() => {
-    //   const fetchData = async () => {
+    // const fetchData = async () => {
     //     try {
-    //       const response = await axios.get("http://192.168.1.16/api/User");
+    //       const response = await axios.get("http://192.168.1.16/api//User/UserDetail");
     //       setEmployeeDetails(response.data);
     //     } catch (error) {
     //       console.error("Error fetching employee details:", error);

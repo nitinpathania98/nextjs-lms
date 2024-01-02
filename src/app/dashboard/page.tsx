@@ -6,6 +6,10 @@ import { MdPendingActions } from 'react-icons/md';
 import { GrCompliance } from "react-icons/gr";
 import { SiVirustotal } from "react-icons/si";
 import { CgUnavailable } from "react-icons/cg";
+import { CiMedicalCase } from "react-icons/ci";
+import { FaHourglassHalf, FaBriefcaseMedical } from "react-icons/fa";
+import { FaArrowDownShortWide } from "react-icons/fa6";
+
 const DashboardPage = () => {
     return (
         <>
@@ -69,7 +73,7 @@ const DashboardPage = () => {
                             </div>
 
                             {/* Additional Details Section */}
-                            <div className="mb-2 flex flex-wrap justify-between p-2">
+                            <div className="mb-2 flex flex-wrap justify-even gap-5 w-  p-2">
                                 {/* Attendance Card */}
                                 <div className="mb-2">
                                     <div className="card p-3 rounded-lg bg-gray-300">
@@ -79,7 +83,7 @@ const DashboardPage = () => {
                                             </div>
                                             <div className="mx-2">
                                                 <div className="mx-2 mb-2"> 20 </div>
-                                                <div className="text-xs font-light"> Total Attendance </div>
+                                                <div className="text-xs font-light">Total Leaves </div>
                                             </div>
                                         </div>
 
@@ -112,7 +116,7 @@ const DashboardPage = () => {
                                             </div>
                                             <div className="mx-2">
                                                 <div className="mx-2 mb-2"> 5 </div>
-                                                <div className="text-xs font-light"> Total Leaves </div>
+                                                <div className="text-xs font-light"> Remaining Leaves </div>
                                             </div>
                                         </div>
                                     </div>
@@ -128,6 +132,49 @@ const DashboardPage = () => {
                                             <div className="mx-2">
                                                 <div className="mx-2 mb-2"> 5 </div>
                                                 <div className="text-xs font-light">Total Absents </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mb-2">
+                                    <div className="card p-3 rounded-lg bg-gray-300">
+                                        <div className="flex items-center md:w-[220px] w-full">
+                                            <div className="icon p-2 bg-gray-200 rounded-full text-center">
+
+                                                <FaBriefcaseMedical />
+                                            </div>
+                                            <div className="mx-2">
+                                                <div className="mx-2 mb-2"> 5 </div>
+                                                <div className="text-xs font-light">Medical Leaves </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mb-2">
+                                    <div className="card p-3 rounded-lg bg-gray-300">
+                                        <div className="flex items-center md:w-[220px] w-full">
+                                            <div className="icon p-2 bg-gray-200 rounded-full text-center">
+
+                                                <FaHourglassHalf />
+                                            </div>
+                                            <div className="mx-2">
+                                                <div className="mx-2 mb-2"> 5 </div>
+                                                <div className="text-xs font-light">Half Days </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mb-2">
+                                    <div className="card p-3 rounded-lg bg-gray-300">
+                                        <div className="flex items-center md:w-[220px] w-full">
+                                            <div className="icon p-2 bg-gray-200 rounded-full text-center">
+
+                                                <FaArrowDownShortWide />
+                                            </div>
+                                            <div className="mx-2">
+                                                <div className="mx-2 mb-2"> 5 </div>
+                                                <div className="text-xs font-light">Short Leaves </div>
                                             </div>
                                         </div>
                                     </div>
