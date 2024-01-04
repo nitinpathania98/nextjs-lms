@@ -12,7 +12,7 @@
   --color-bg: #fff;
   --color-border: #e5e7eb;
   --color-sidebar-item: #f3f4f6;
-  
+
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -118,6 +118,7 @@ body {
   right: 0;
   top: 4.7rem;
   border: none;
+  z-index: 999;
   background-color: var(--color-bg);
   width: 1.5rem;
   height: 1.5rem;
@@ -130,5 +131,3 @@ body {
   transform: translateX(50%);
   font-size: 1.1rem;
 }
-
-

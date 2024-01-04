@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { AiOutlineHome } from "react-icons/ai";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdHistory, MdRequestPage, MdOutlineSettingsApplications, MdCreate } from "react-icons/md";
@@ -53,7 +54,7 @@ const Sidebar: React.FC = () => {
 
     return (
         <>
-            <div className="sidebar__wrapper ">
+            <div className="sidebar__wrapper h-full ">
                 <button className="btn" onClick={toggleSidebarcollapse}>
                     {isCollapsed ? <MdKeyboardArrowRight /> : <MdKeyboardArrowLeft />}
                 </button>

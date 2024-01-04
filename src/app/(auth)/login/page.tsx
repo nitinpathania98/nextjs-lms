@@ -157,10 +157,10 @@ function Login() {
                                             {' '}
                                             Password{' '}
                                         </label>
-                                        <a href="#" title="" className="text-sm font-semibold text-black hover:underline">
+                                        <Link href="/forget-password" title="" className="text-sm font-semibold text-black hover:underline">
                                             {' '}
                                             Forgot password?{' '}
-                                        </a>
+                                        </Link>
                                     </div>
                                     <div className="mt-2">
                                         <input

@@ -1,7 +1,6 @@
 "use client"
 // components/LeaveRequest.tsx
 import React, { useState } from 'react';
-import BaseLayout from '@/app/components/BaseLayout';
 import Navbar from '../../components/Navbar';
 import toast, { Toaster } from 'react-hot-toast'
 import { BASE_URL } from '@/services/baseUrl';
@@ -49,8 +48,7 @@ const LeaveRequest = () => {
     };
 
     return (
-        <BaseLayout>
-            <Navbar />
+        <>
 
             {/* <div className="p-6">
                 <div className="bg-gray-200 p-4 rounded-md shadow-md mb-6">
@@ -142,11 +140,11 @@ const LeaveRequest = () => {
                         {/* Leave Request */}
                         <div className="relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200" style={{ "width": "50%" }}>
                             <div className="card p-3 rounded-lg">
-                                <h2 className="text-xl font-bold mb-4">Leave Request</h2>
+                                <h2 className=" text-xl md:text-2xl  mb-4">Leave Request</h2>
                                 <form onSubmit={handleLeaveRequest} method="POST" className="grid grid-cols-2 gap-6 px-2">
 
-                                    <div className="flex items-center justify-between py-2 col-span-3 mr-15">
-                                        <label className="font-semibold">Leave Type:</label>
+                                    <div className="flex items-center justify-between py-2 col-span-3 ">
+                                        <label className="font-md">Leave Type:</label>
                                         <select
                                             name='leaveType'
                                             required
@@ -161,7 +159,7 @@ const LeaveRequest = () => {
                                         </select>
                                     </div>
                                     <div className="flex items-center justify-between py-2 col-span-3">
-                                        <label className="font-semibold">Start Date:</label>
+                                        <label className="font-md">Start Date:</label>
                                         <input
                                             type="date"
                                             name='startDate'
@@ -172,7 +170,7 @@ const LeaveRequest = () => {
                                         />
                                     </div>
                                     <div className="flex items-center justify-between py-2 col-span-3">
-                                        <label className="font-semibold">End Date:</label>
+                                        <label className="font-md">End Date:</label>
                                         <input
                                             type="date"
                                             name='endDate'
@@ -183,7 +181,7 @@ const LeaveRequest = () => {
                                         />
                                     </div>
                                     <div className="flex items-center justify-between py-2 col-span-3">
-                                        <label className="font-semibold">Leave Reason:</label>
+                                        <label className="font-md">Leave Reason:</label>
                                         <textarea
                                             name='leaveReason'
                                             value={formdata.leaveReason}
@@ -218,9 +216,7 @@ const LeaveRequest = () => {
                     </div>
                 </div>
             </div>
-
-
-        </BaseLayout>
+        </>
     );
 };
 

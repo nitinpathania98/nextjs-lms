@@ -38,7 +38,7 @@ function Register() {
         e.preventDefault();
         setLoading(true)
         try {
-            const url = `${BASE_URL}User`;
+            const url = `${BASE_URL}User/Register`;
             const response: any = await registerUser(url, formdata);
             if (response.status === 200) {
                 setLoading(false);
