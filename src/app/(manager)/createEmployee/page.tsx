@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import { BASE_URL } from '@/services/baseUrl'
 import { registerUser } from '@/services/api'
 const InitialformData = {
+    role: "",
     name: "",
     email: "",
     password: "",
@@ -36,7 +37,7 @@ function CreateEmployee() {
         e.preventDefault();
         setLoading(true)
         try {
-            const url = `${BASE_URL}User`;
+            const url = `${BASE_URL}register`;
             const response: any = await registerUser(url, formdata);
             if (response.status === 200) {
                 setLoading(false);
@@ -106,9 +107,15 @@ function CreateEmployee() {
                                     <label htmlFor="employeeType" className="block mb-2 text-sm font-medium text-textColor">
                                         Select User to Add
                                     </label>
-                                    <select id="employeeType" className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5">
-                                        <option disabled>Select User Type</option>
-                                        <option value="employee">Employee</option>
+                                    <select id="role" className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
+                                        name="role"
+                                        value={formdata.role}
+                                        onChange={onChangeData}
+                                        required
+                                    >
+                                        <option>Select User Type</option>
+                                        <option value="Employee">Employee</option>
+                                        <option value="Manager">Manager</option>
                                     </select>
                                 </div>
 
@@ -207,6 +214,10 @@ function CreateEmployee() {
                                         <select
                                             id="department"
                                             className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
+                                            name="department"
+                                            value={formdata.department}
+                                            onChange={onChangeData}
+                                            required
                                         >
                                             <option>Choose a department</option>
                                             <option value="Developer">Web Developer</option>
@@ -221,6 +232,10 @@ function CreateEmployee() {
                                         <select
                                             id="designation"
                                             className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
+                                            name="designation"
+                                            value={formdata.designation}
+                                            onChange={onChangeData}
+                                            required
                                         >
                                             <option>Choose a Designation</option>
                                             <option value="Intern">Intern</option>
