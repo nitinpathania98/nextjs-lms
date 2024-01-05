@@ -45,7 +45,7 @@ const Details: React.FC = () => {
   return (
     <>
 
-      <div className="bg-gray-200 p-4 rounded-md shadow-md w-full max-w-md">
+      {/* <div className="bg-gray-200 p-4 rounded-md shadow-md w-full max-w-md">
           <h2 className="text-xl md:text-2xl mb-4">Employee Details</h2>
           <h3 className="mt-1 max-w-2xl text-bold text-gray-500">
             This is the information about the employee.
@@ -72,7 +72,7 @@ const Details: React.FC = () => {
             </div>
 
           </div>
-        </div>
+        </div> */}
 
 
 
