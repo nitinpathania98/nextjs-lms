@@ -45,7 +45,7 @@ const Details: React.FC = () => {
   return (
     <>
 
-      {/* <div className="bg-gray-200 p-4 rounded-md shadow-md w-full max-w-md">
+      <div className="bg-gray-200 p-4 rounded-md shadow-md w-full max-w-md">
           <h2 className="text-xl md:text-2xl mb-4">Employee Details</h2>
           <h3 className="mt-1 max-w-2xl text-bold text-gray-500">
             This is the information about the employee.
@@ -72,7 +72,7 @@ const Details: React.FC = () => {
             </div>
 
           </div>
-        </div> */}
+        </div>
 
 
 
@@ -258,7 +258,7 @@ const Details: React.FC = () => {
           <hr className="bg-black border-1 border-r-1 w-full" />
         </div>
 
-        {/* <div className="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
+        <div className="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
               <div className="px-4 py-5 sm:px-6">
                 <h2 className="text-xl md:text-2xl mb-4">Employee Details</h2>
 
@@ -349,7 +349,7 @@ const Details: React.FC = () => {
                   </div>
                 </dl>
               </div>
-            </div> */}
+            </div>
 
 
       </div>
