@@ -1,7 +1,6 @@
 "use client"
 // components/LeaveRequest.tsx
 import React, { useState } from 'react';
-import Navbar from '../../components/Navbar';
 import toast, { Toaster } from 'react-hot-toast'
 import { BASE_URL } from '@/services/baseUrl';
 import { RequestLeave } from '@/services/api';
@@ -32,7 +31,7 @@ const LeaveRequest = () => {
         e.preventDefault();
         try {
 
-            const url = `${BASE_URL}User/LeaveRequest`;
+            const url = `${BASE_URL}leaveRequest`;
             const response: any = await RequestLeave(url, formdata);
             alert("Submit Request Leave : ")
             toast.success("Leave request submitted successfully")

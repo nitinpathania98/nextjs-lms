@@ -261,8 +261,9 @@ const History = () => {
     useEffect(() => {
         const fetchLeaveHistory = async () => {
             try {
-                const response = await axios.get('');
+                const response = await axios.get('http://192.168.1.16/api/leaveHistory');
                 setLeaveHistory(mockLeaveHistory);
+                console.log(response)
             } catch (error) {
                 console.error('Error fetching leave history:', error);
             }
