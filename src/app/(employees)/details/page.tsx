@@ -45,34 +45,34 @@ const Details: React.FC = () => {
   return (
     <>
 
-      {/* <div className="bg-gray-200 p-4 rounded-md shadow-md w-full max-w-md">
-          <h2 className="text-xl md:text-2xl mb-4">Employee Details</h2>
-          <h3 className="mt-1 max-w-2xl text-bold text-gray-500">
-            This is the information about the employee.
-          </h3>
+      <div className="bg-gray-200 p-4 rounded-md shadow-md w-full max-w-md">
+        <h2 className="text-xl md:text-2xl mb-4">Employee Details</h2>
+        <h3 className="mt-1 max-w-2xl text-bold text-gray-500">
+          This is the information about the employee.
+        </h3>
 
 
-          <div className="container py-5 px-5">
-            <div className="row">
+        <div className="container py-5 px-5">
+          <div className="row">
 
-              {employeeDetails.map((result, index) => (
-                <div key={index} className="col-lg-4 border px-2 py-2">
-                  <p className="font-semibold">Name: {result.name}</p>
-                  <p>Email: {result.email}</p>
-                  <p>Password: {result.password}</p>
-                  <p>Designation: {result.designation}</p>
-                  <p>Department: {result.department}</p>
-                  <p>PhoneNumber: {result.phoneNumber}</p>
-                  <p>Country: {result.country}</p>
-                  <p>City: {result.city}</p>
-                  <p>State: {result.state}</p>
-                  <p>Address: {result.address}</p>
-                </div>
-              ))}
-            </div>
-
+            {employeeDetails.map((result, index) => (
+              <div key={index} className="col-lg-4 border px-2 py-2">
+                <p className="font-semibold">Name: {result.name}</p>
+                <p>Email: {result.email}</p>
+                <p>Password: {result.password}</p>
+                <p>Designation: {result.designation}</p>
+                <p>Department: {result.department}</p>
+                <p>PhoneNumber: {result.phoneNumber}</p>
+                <p>Country: {result.country}</p>
+                <p>City: {result.city}</p>
+                <p>State: {result.state}</p>
+                <p>Address: {result.address}</p>
+              </div>
+            ))}
           </div>
-        </div> */}
+
+        </div>
+      </div>
 
 
 
@@ -92,7 +92,7 @@ const Details: React.FC = () => {
 
         {/* photo section */}
         <div className="photoInfo flex flex-col  rounded-lg   bg-white   gap-2 shadow-2xl  ">
-          
+
           <div className="flex flex-row p-4">
             <div className="w-1/5">
               <img
@@ -226,7 +226,7 @@ const Details: React.FC = () => {
           <div className="w-full grid grid-cols-4 items-center gap-1 p-4">
             <div className="">
               <p className="mt-1 text-sm text-gray-500">
-               Phone No.
+                Phone No.
               </p>
             </div>
             <div className="">
@@ -257,102 +257,104 @@ const Details: React.FC = () => {
           </div>
           <hr className="bg-black border-1 border-r-1 w-full" />
         </div>
-
-        <div className="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
-              <div className="px-4 py-5 sm:px-6">
-                <h2 className="text-xl md:text-2xl mb-4">Employee Details</h2>
-
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                  Details and informations about Employee.
-                </p>
-              </div>
-              <div className="border-t border-gray-200">
-                <dl>
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      Full name
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      Mickael Poulaz
-                    </dd>
-                  </div>
-                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      Email address
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      m.poul@example.com
-                    </dd>
-                  </div>
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      Password
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      *******
-                    </dd>
-                  </div>
-                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      Phone Number
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      +919876543210
-                    </dd>
-                  </div>
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      Department
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      Web Developer
-                    </dd>
-                  </div>
-                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      Designation
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      Intern
-                    </dd>
-                  </div>
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      Country
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      India                      </dd>
-                  </div>
-                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      State
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      Punjab
-                    </dd>
-                  </div>
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      City
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      Mohali
-                    </dd>
-                  </div>
-                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">
-                      Full Address
-                    </dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      To get social media testimonials like these, keep your customers engaged with your social media accounts by posting regularly yourself
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
-
-
       </div>
+
+
+      <div className="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
+        <div className="px-4 py-5 sm:px-6">
+          <h2 className="text-xl md:text-2xl mb-4">Employee Details</h2>
+
+          <p className="mt-1 max-w-2xl text-sm text-gray-500">
+            Details and informations about Employee.
+          </p>
+        </div>
+        <div className="border-t border-gray-200">
+          <dl>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Full name
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                Mickael Poulaz
+              </dd>
+            </div>
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Email address
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                m.poul@example.com
+              </dd>
+            </div>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Password
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                *******
+              </dd>
+            </div>
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Phone Number
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                +919876543210
+              </dd>
+            </div>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Department
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                Web Developer
+              </dd>
+            </div>
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Designation
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                Intern
+              </dd>
+            </div>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Country
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                India                      </dd>
+            </div>
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                State
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                Punjab
+              </dd>
+            </div>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                City
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                Mohali
+              </dd>
+            </div>
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Full Address
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                To get social media testimonials like these, keep your customers engaged with your social media accounts by posting regularly yourself
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+
+
 
     </>
   );
