@@ -131,3 +131,47 @@ body {
   transform: translateX(50%);
   font-size: 1.1rem;
 }
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+}
+
+h3 {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+hr {
+  width: 100%;
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.edit {
+  max-width: 42rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
+  width: 25%;
+  background-color: transparent;
+  border: none;
+ 
+}
+.edit:hover{
+  text-decoration: underline;
+}
+
+button {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+  max-width: fit-content;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(203 213 225 / var(--tw-border-opacity));
+  padding: 0.25rem;
+}

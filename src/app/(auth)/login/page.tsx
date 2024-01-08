@@ -32,7 +32,7 @@ function Login() {
         setLoading(true)
         console.log(formdata)
         try {
-            const url = `${BASE_URL}User/Login`;
+            const url = `${BASE_URL}login`;
             const response: any = await UserLogin(url, formdata);
             console.log("response", response);
             if (response.status === 200) {

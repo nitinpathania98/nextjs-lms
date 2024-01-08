@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import axios from 'axios';
+import Sidebar from '@/app/components/Sidebar';
 
 const History = () => {
     // Mock data for demonstration
@@ -261,7 +262,8 @@ const History = () => {
     useEffect(() => {
         const fetchLeaveHistory = async () => {
             try {
-                const response = await axios.get('');
+                // const response = await axios.get('http://192.168.1.16/api/leaveHistory');
+                // console.log(response);
                 setLeaveHistory(mockLeaveHistory);
             } catch (error) {
                 console.error('Error fetching leave history:', error);
@@ -273,36 +275,42 @@ const History = () => {
 
     return (
         <>
-            <div>
-                <div className="p-6">
-                    <div className="bg-gray-200 p-4 rounded-md shadow-md">
+            <div className="flex h-screen overflow-hidden">
+                <Sidebar />
+                <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+                    <Navbar />
+                    <div className="mx-auto w-full p-4 md:p-6 2xl:p-10">
+                        
+                                <div className="bg-gray-200 p-4 rounded-md shadow-md">
 
-                        <h2 className="text-xl md:text-2xl  mb-4">Leave History</h2>
-                        <table className="w-full table-auto overflow-x-auto ">
-                            <thead>
-                                <tr className="bg-gray-300 ">
-                                    <th className="border-2 border-black px-4 py-2">Leave Type</th>
-                                    <th className="border-2 border-black px-4 py-2">Start Date</th>
-                                    <th className="border-2 border-black px-4 py-2">End Date</th>
-                                    <th className="border-2 border-black px-4 py-2">Reason</th>
-                                    <th className="border-2 border-black px-4 py-2">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody className='overflow-y-auto text-center'>
-                                {leaveHistory.map((leave: any) => (
-                                    <tr key={leave.id} >
-                                        <td className="border border-black px-4 py-2">{leave.leaveType}</td>
-                                        <td className="border border-black px-4 py-2">{leave.startDate}</td>
-                                        <td className="border border-black px-4 py-2">{leave.endDate}</td>
-                                        <td className="border border-black px-4 py-2">{leave.reason}</td>
-                                        <td className="border border-black px-4 py-2">{leave.status}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                    <h2 className="text-xl md:text-2xl  mb-4">Leave History</h2>
+                                    <table className="w-full table-auto overflow-x-auto ">
+                                        <thead>
+                                            <tr className="bg-gray-300 ">
+                                                <th className="border-2 border-black px-4 py-2">Leave Type</th>
+                                                <th className="border-2 border-black px-4 py-2">Start Date</th>
+                                                <th className="border-2 border-black px-4 py-2">End Date</th>
+                                                <th className="border-2 border-black px-4 py-2">Reason</th>
+                                                <th className="border-2 border-black px-4 py-2">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className='overflow-y-auto text-center'>
+                                            {leaveHistory.map((leave: any) => (
+                                                <tr key={leave.id} >
+                                                    <td className="border border-black px-4 py-2">{leave.leaveType}</td>
+                                                    <td className="border border-black px-4 py-2">{leave.startDate}</td>
+                                                    <td className="border border-black px-4 py-2">{leave.endDate}</td>
+                                                    <td className="border border-black px-4 py-2">{leave.reason}</td>
+                                                    <td className="border border-black px-4 py-2">{leave.status}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+
         </>
     );
 };
