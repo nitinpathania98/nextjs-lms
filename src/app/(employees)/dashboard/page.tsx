@@ -16,10 +16,10 @@ const DashboardPage = () => {
                 <Sidebar />
                 <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
                     <Navbar />
-                    <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+                    <div className="mx-auto max-w-screen-2xl p-4 md:p-2 2xl:p-5">
                         <div className='w-auto  '>
-                            <div className='p-5 '>
-                                <div className=" card rounded-lg shadow bg-card p-2 my-2 bg-gray-200">
+                            <div className='p-1 '>
+                                <div className=" card rounded-lg shadow bg-card p-2 my-1 bg-gray-200">
                                     {/* Header Section */}
                                     <div className="flex justify-between items-center my-2">
                                         <div className="flex items-center">
@@ -71,7 +71,7 @@ const DashboardPage = () => {
                                     </div>
 
                                     {/* Additional Details Section */}
-                                    <div className="mb-2 flex flex-wrap justify-even gap-10 w-  p-2">
+                                    <div className="mb-2 flex flex-wrap justify-even gap-10  p-2">
                                         <div className="mb-2">
                                             <div className="card p-3 rounded-lg bg-gray-300">
                                                 <div className="flex items-center md:w-[220px] w-full">

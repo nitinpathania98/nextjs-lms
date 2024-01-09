@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import axios from 'axios';
 import Sidebar from '@/app/components/Sidebar';
+import { BASE_URL } from '@/services/baseUrl';
+import { HistoryLeave } from '@/services/api';
 
 const History = () => {
     // Mock data for demonstration
@@ -262,7 +264,9 @@ const History = () => {
     useEffect(() => {
         const fetchLeaveHistory = async () => {
             try {
-                // const response = await axios.get('http://192.168.1.16/api/leaveHistory');
+                const url = `${BASE_URL}leaveHistory`;
+
+                // const response: any = await HistoryLeave(url, leaveHistory);
                 // console.log(response);
                 setLeaveHistory(mockLeaveHistory);
             } catch (error) {
@@ -279,8 +283,9 @@ const History = () => {
                 <Sidebar />
                 <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
                     <Navbar />
-                    <div className="mx-auto w-full p-4 md:p-6 2xl:p-10">
-                        
+                    <div className="mx-auto max-w-screen-2xl w-full p-4 md:p-2 2xl:p-5">
+                        <div className='w-auto  '>
+                            <div className='p-1 '>
                                 <div className="bg-gray-200 p-4 rounded-md shadow-md">
 
                                     <h2 className="text-xl md:text-2xl  mb-4">Leave History</h2>
@@ -310,6 +315,8 @@ const History = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
         </>
     );

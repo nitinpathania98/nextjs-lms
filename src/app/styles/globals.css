@@ -76,6 +76,7 @@ body {
 
 .sidebar__list {
   list-style: none;
+  overflow-y: auto;
 }
 
 .sidebar__link {

@@ -33,6 +33,7 @@ export const RequestLeave = async (endpoint: any, payload: any) => {
     }
 }
 
+//....Post method
 const postMethod = async (endpoint: any, payload: any) => {
 
     try {
@@ -42,6 +43,44 @@ const postMethod = async (endpoint: any, payload: any) => {
 
     } catch (error) {
         console.log("error in postMethod", error);
+        throw error;
+    }
+}
+
+///.....getMethod
+
+const getMethod = async (endpoint: any, payload: any) => {
+
+    try {
+        const response = await axios.get(endpoint, payload);
+        console.log("response in postMethod", response);
+        return response;
+
+    } catch (error) {
+        console.log("error in postMethod", error);
+        throw error;
+    }
+}
+
+//....LeaveHistory
+
+export const HistoryLeave = async (endpoint: any, payload: any) => {
+    try {
+        const response = await getMethod(endpoint, payload);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+//.....
+
+export const UserDetails = async (endpoint: any, payload: any) => {
+    try {
+        const response = await getMethod(endpoint, payload);
+        return response;
+    } catch (error) {
         throw error;
     }
 }
