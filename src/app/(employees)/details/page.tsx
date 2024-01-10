@@ -25,29 +25,29 @@ const Details: React.FC = () => {
   const [employeeDetails, setEmployeeDetails] = useState<EmployeeDetails[]>([]);
 
   useEffect(() => {
-    //   const fetchUserDetails = async () => {
-    //     try {
-    //       const url = `${BASE_URL}userDetail`;
-    //       const response = await UserDetails(url, employeeDetails)
-    //       console.log(response)
-    //       setEmployeeDetails(response.data);
-    //     } catch (error) {
-    //       console.error("Error fetching employee details:", error);
-    //     }
-    //   };
+    const fetchUserDetails = async () => {
+      try {
+        const url = `${BASE_URL}User/UserDetail`;
+        const response = await UserDetails(url, employeeDetails)
+        console.log(response)
+        setEmployeeDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching employee details:", error);
+      }
+    };
 
-    //   fetchUserDetails();
-    // }, []);
-    axios.get("http://192.168.1.1/api/userDetail")
-      .then((res) => {
-        setEmployeeDetails(res.data)
-        console.log(res.data);
+    fetchUserDetails();
+  }, []);
+  //   axios.get("http://192.168.1.13/api/User/UserDetail")
+  //     .then((res) => {
+  //       setEmployeeDetails(res.data)
+  //       console.log(res.data);
 
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-      });
-  }, [])
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data: ', error);
+  //     });
+  // }, [])
 
   return (
     <>
@@ -58,35 +58,7 @@ const Details: React.FC = () => {
           <div className="mx-auto max-w-screen-2xl p-4 md:p-2 2xl:p-5">
             <div className='w-auto  '>
               <div className='p-1 '>
-                {/* <div className="bg-gray-200 p-4 rounded-md shadow-md w-full max-w-md">
-        <h2 className="text-xl md:text-2xl mb-4">Employee Details</h2>
-        <h3 className="mt-1 max-w-2xl text-bold text-gray-500">
-          This is the information about the employee.
-        </h3>
-
-
-        <div className="container py-5 px-5">
-          <div className="row">
-
-            {employeeDetails.map((result, index) => (
-              <div key={index} className="col-lg-4 border px-2 py-2">
-                <p className="font-semibold">Name: {result.name}</p>
-                <p>Email: {result.email}</p>
-                <p>Password: {result.password}</p>
-                <p>Designation: {result.designation}</p>
-                <p>Department: {result.department}</p>
-                <p>PhoneNumber: {result.phoneNumber}</p>
-                <p>Country: {result.country}</p>
-                <p>City: {result.city}</p>
-                <p>State: {result.state}</p>
-                <p>Address: {result.address}</p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </div> */}
-                  {employeeDetails.length > 0 && employeeDetails.map((result,index) => (
+                {employeeDetails.map((result, index) => (
                   <div key={index} className="middleSection  h-full  w-11/12 m-auto flex flex-col  p-2 gap-6  ">
                     <div className="firstSection  flex justify-between items-center">
                       <div>

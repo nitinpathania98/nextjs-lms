@@ -17,7 +17,7 @@ export const UserLogin = async (endpoint: any, payload: any) => {
         console.log("response in USerLogin", response);
         return response;
     } catch (error) {
-        console.log("error in USerLogin", error);
+        console.log("error in UserLogin", error);
         throw error;
     }
 }
@@ -53,11 +53,11 @@ const getMethod = async (endpoint: any, payload: any) => {
 
     try {
         const response = await axios.get(endpoint, payload);
-        console.log("response in postMethod", response);
+        console.log("response in getMethod", response);
         return response;
 
     } catch (error) {
-        console.log("error in postMethod", error);
+        console.log("error in getMethod", error);
         throw error;
     }
 }
