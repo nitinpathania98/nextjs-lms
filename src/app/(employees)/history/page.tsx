@@ -267,30 +267,29 @@ const History: React.FC = () => {
     //     },
 
     // ];
-    const fetchLeaveHistory = async () => {
-        try {
-            const url = `${BASE_URL}User/LeaveHistory?userid=4`;
-            const response = await HistoryLeave(url, leaveHistory);
-            console.log(response.data);
-            setLeaveHistory([response.data.leaveHistory]);
-        } catch (error) {
-            console.error('Error fetching leave history:', error);
-        }
-    };
+
 
     useEffect(() => {
-
+        const fetchLeaveHistory = async () => {
+            try {
+                const url = `${BASE_URL}leaveHistory`;
+                const response = await HistoryLeave(url, leaveHistory);
+                console.log(response);
+                setLeaveHistory([response.data.leaveHistory]);
+            } catch (error) {
+                console.error('Error fetching leave history:', error);
+            }
+        };
         fetchLeaveHistory();
-
     }, []);
     console.log(leaveHistory, "yahoo")
     return (
         <>
             <div className="flex h-screen overflow-hidden">
                 <Sidebar />
-                <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+                <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-auto">
                     <Navbar />
-                    <div className="mx-auto max-w-screen-2xl w-full p-4 md:p-2 2xl:p-5">
+                    <div className="mx-auto  max-w-screen-2xl p-4 md:p-2 2xl:p-5">
                         <div className='w-auto  '>
                             <div className='p-1 '>
                                 <div className="bg-gray-200 p-4 rounded-md shadow-md">

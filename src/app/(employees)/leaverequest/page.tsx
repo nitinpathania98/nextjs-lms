@@ -33,7 +33,7 @@ const LeaveRequest = () => {
         e.preventDefault();
         try {
 
-            const url = `${BASE_URL}User/LeaveRequest`;
+            const url = `${BASE_URL}leaveRequest`;
             const response: any = await RequestLeave(url, formdata);
             alert("Submit Request Leave : ")
             toast.success("Leave request submitted successfully")
@@ -52,170 +52,92 @@ const LeaveRequest = () => {
         <>
             <div className="flex h-screen overflow-hidden">
                 <Sidebar />
-                <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+                <div className="relative flex flex-1 flex-col overflow-y-auto ">
                     <Navbar />
-                    <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+                    <div className="mx-auto w-full p-4 md:p-2 2xl:p-5">
+                        <div className='w-auto  '>
+                            <div className='p-1 '>
+                                {/* Leave Request */}
+                                <div className="mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200" >
+                                    <h2 className=" text-xl md:text-2xl  mb-4">Leave Request</h2>
+                                    <form onSubmit={handleLeaveRequest} method="POST">
+                                        <div className="mb-6">
+                                            <label htmlFor="leaveType" className="block mb-2 text-sm font-medium text-textColor">
+                                                Leave Type:
+                                            </label>
+                                            <select id="leaveType"
+                                                name='leaveType'
+                                                required
+                                                value={formdata.leaveType}
+                                                onChange={DataChange}
+                                                className="cursor-pointer bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
+                                            >
+                                                <option value="fullLeave">Full Leave</option>
+                                                <option value="medicalLeave">Medical Leave</option>
+                                                <option value="halfDayLeave">Half Day Leave</option>
+                                                <option value="shortLeave">Short Leave</option>
+                                            </select>
+                                        </div>
 
-                        {/* <div className="p-6">
-                <div className="bg-gray-200 p-4 rounded-md shadow-md mb-6">
-                    <h2 className="text-xl font-bold mb-4">Leave Request</h2>
-                    <form onSubmit={handleLeaveRequest} method="POST" >
+                                        <div className="mt-2 grid gap-6 mb-6 md:grid-cols-2">
+                                            <div>
+                                                <label htmlFor="startDate" className="block mb-2 text-sm font-medium text-textColor ">
+                                                    Start Date:
+                                                </label>
+                                                <input
+                                                    id="date"
+                                                    className="cursor-pointer bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
 
-                        <div className="grid grid-cols-3 gap-6 px-2">
-                            <div className="flex items-center justify-between py-2">
-                                <span className="font-semibold">Remaining Leaves:</span>
-                                <span className="text-blue-500">{remainingLeaves}</span>
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-3 gap-6 px-2">
-                            <div className="flex items-center justify-between py-2">
-                                <label className="font-semibold">Leave Type:</label>
-                                <select
-                                    name='leaveType'
-                                    required
-                                    value={formdata.leaveType}
-                                    onChange={DataChange}
-                                    className="p-2 border border-gray-300 rounded-md"
-                                >
-                                    <option value="fullLeave">Full Leave</option>
-                                    <option value="medicalLeave">Medical Leave</option>
-                                    <option value="halfDayLeave">Half Day Leave</option>
-                                    <option value="shortLeave">Short Leave</option>
-                                </select>
-                            </div>
-                            <div className="flex items-center justify-between py-2">
-                                <label className="font-semibold">Start Date:</label>
-                                <input
-                                    type="date"
-                                    name='startDate'
-                                    value={formdata.startDate}
-                                    onChange={DataChange}
-                                    required
-                                    className="p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <div className="flex items-center justify-between py-2">
-                                <label className="font-semibold">End Date:</label>
-                                <input
-                                    type="date"
-                                    name='endDate'
-                                    value={formdata.endDate}
-                                    onChange={DataChange}
-                                    required
-                                    className="p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-3 gap-6 px-2">
-                            <div className="flex items-center justify-between py-2">
-                                <label className="font-semibold">Leave Reason:</label>
-                                <textarea
-                                    name='leaveReason'
-                                    value={formdata.leaveReason}
-                                    onChange={DataChange}
-                                    required
-                                    className="p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                        </div>
-                        <div className="py-2 px-2">
-                            <button
-                                type='submit'
-                                className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-                            >
-                                Submit Leave Request
-                            </button>
-                        </div>
+                                                    type="date"
+                                                    name="startDate"
+                                                    value={formdata.startDate}
+                                                    onChange={DataChange}
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="endDate" className="block mb-2 text-sm font-medium text-textColor ">
+                                                    End Date:
+                                                </label>
+                                                <input
+                                                    id="date"
+                                                    className="cursor-pointer bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
 
-                    </form>
-                </div>
-
-                <div className="bg-gray-200 p-4 rounded-md shadow-md">
-                    <h2 className="text-xl font-bold mb-4">Leave Status</h2>
-                    <div className="py-2">
-                        {leaveStatus && (
-                            <div className="text-green-500">{leaveStatus}</div>
-                        )}
-                    </div>
-                </div>
-            </div> */}
-
-
-                        {/* Leave Request */}
-                        <div className=" relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200" >
-                            <h2 className=" text-xl md:text-2xl  mb-4">Leave Request</h2>
-                            <form onSubmit={handleLeaveRequest} method="POST" className="grid grid-cols-2 gap-6 px-2">
-
-                                <div className="flex items-center justify-between py-2 col-span-3 ">
-                                    <label className="font-md">Leave Type:</label>
-                                    <select
-                                        name='leaveType'
-                                        required
-                                        value={formdata.leaveType}
-                                        onChange={DataChange}
-                                        className="cursor-pointer  p-2 border border-gray-300 rounded-md"
-                                    >
-                                        <option value="fullLeave">Full Leave</option>
-                                        <option value="medicalLeave">Medical Leave</option>
-                                        <option value="halfDayLeave">Half Day Leave</option>
-                                        <option value="shortLeave">Short Leave</option>
-                                    </select>
+                                                    type="date"
+                                                    name="endDate"
+                                                    value={formdata.endDate}
+                                                    onChange={DataChange}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="mb-6">
+                                            <label htmlFor="leaveReason" className="block mb-2 text-sm font-medium text-textColor ">
+                                                Leave Reason
+                                            </label>
+                                            <textarea
+                                                name='leaveReason'
+                                                value={formdata.leaveReason}
+                                                onChange={DataChange}
+                                                required
+                                                className="cursor-pointer bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
+                                                placeholder="Give reason for leave"
+                                                rows={3}
+                                            />
+                                        </div>
+                                        <div className="py-2  col-span-3">
+                                            <button
+                                                type='submit'
+                                                className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+                                            >
+                                                Submit Leave Request
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div className="flex items-center justify-between py-2 col-span-3">
-                                    <label className="font-md">Start Date:</label>
-                                    <input
-                                        type="date"
-                                        name='startDate'
-                                        value={formdata.startDate}
-                                        onChange={DataChange}
-                                        required
-                                        className="cursor-pointer  p-2 border border-gray-300 rounded-md"
-                                    />
-                                </div>
-                                <div className="flex items-center justify-between py-2 col-span-3">
-                                    <label className="font-md">End Date:</label>
-                                    <input
-                                        type="date"
-                                        name='endDate'
-                                        value={formdata.endDate}
-                                        onChange={DataChange}
-                                        required
-                                        className="cursor-pointer  p-2 border border-gray-300 rounded-md"
-                                    />
-                                </div>
-                                <div className="flex items-center justify-between py-2 col-span-3">
-                                    <label className="font-md">Leave Reason:</label>
-                                    <textarea
-                                        name='leaveReason'
-                                        value={formdata.leaveReason}
-                                        onChange={DataChange}
-                                        required
-                                        className="cursor-pointer  p-2 border border-gray-300 rounded-md resize-x"
-                                    />
-                                </div>
-                                <div className="py-2  col-span-3">
-                                    <button
-                                        type='submit'
-                                        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-                                    >
-                                        Submit Leave Request
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-
-                    {/* Leave Status */}
-                    {/* <div className=" relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200">
-                            <div className="card p-3 rounded-lg">
-                                <h2 className="text-xl font-bold mb-4">Leave Status</h2>
-                                <div className="py-2">
-                                    {leaveStatus && (
-                                        <div className="text-green-500">{leaveStatus}</div>
-                                    )}
-                                </div>
-                            </div>
-                        </div> */}
                 </div>
             </div>
 

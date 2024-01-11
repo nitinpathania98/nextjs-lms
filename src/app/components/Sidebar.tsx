@@ -58,7 +58,7 @@ const Sidebar: React.FC = () => {
                 <button className="btn" onClick={toggleSidebarcollapse}>
                     {isCollapsed ? <MdKeyboardArrowRight /> : <MdKeyboardArrowLeft />}
                 </button>
-                <aside className="sidebar" data-collapse={isCollapsed}>
+                <aside className="sidebar " data-collapse={isCollapsed}>
                     <div className="sidebar__top">
                         <Image
                             width={80}

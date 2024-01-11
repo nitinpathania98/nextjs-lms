@@ -18,7 +18,7 @@ interface EmployeeDetails {
   state: string;
   city: string;
   address: string;
-  key: string;
+
 }
 
 const Details: React.FC = () => {
@@ -27,7 +27,7 @@ const Details: React.FC = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const url = `${BASE_URL}User/UserDetail`;
+        const url = `${BASE_URL}userDetail`;
         const response = await UserDetails(url, employeeDetails)
         console.log(response)
         setEmployeeDetails(response.data);
@@ -58,13 +58,13 @@ const Details: React.FC = () => {
           <div className="mx-auto max-w-screen-2xl p-4 md:p-2 2xl:p-5">
             <div className='w-auto  '>
               <div className='p-1 '>
-                {employeeDetails.map((result, index) => (
-                  <div key={index} className="middleSection  h-full  w-11/12 m-auto flex flex-col  p-2 gap-6  ">
+                {employeeDetails.length > 0 && employeeDetails.map((result:any, index) => (
+                  <div key={result} className="middleSection  h-full  w-11/12 m-auto flex flex-col  p-2 gap-6  ">
                     <div className="firstSection  flex justify-between items-center">
                       <div>
                         <h1 >Your Info</h1>
                       </div>
-                      <div className="flex flex-row  text-justify  gap-1">
+                      <div className="flex flex-row text-justify  gap-1">
                         <div className="flex  items-center"><MdSecurity size={24} /></div>
                         <div className="mr-20">
                           <h3 className="font-medium">change Password</h3>

@@ -16,7 +16,7 @@ const DashboardPage = () => {
                 <Sidebar />
                 <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
                     <Navbar />
-                    <div className="mx-auto max-w-screen-2xl p-4 md:p-2 2xl:p-5">
+                    <div className="mx-auto w-fullp-4 md:p-2 2xl:p-5">
                         <div className='w-auto  '>
                             <div className='p-1 '>
                                 <div className=" card rounded-lg shadow bg-card p-2 my-1 bg-gray-200">
