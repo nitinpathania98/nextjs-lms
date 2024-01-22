@@ -41,8 +41,8 @@ const sidebarItems: SidebarItem[] = [
         icon: MdOutlineSettingsApplications,
     },
     {
-        name: "Create Employee",
-        href: "/createEmployee",
+        name: "Edit Employee",
+        href: "/editEmployee",
         icon: MdCreate,
     },
 

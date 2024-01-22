@@ -49,10 +49,10 @@ const postMethod = async (endpoint: any, payload: any) => {
 
 ///.....getMethod
 
-const getMethod = async (endpoint: any, payload: any) => {
+const getMethod = async (endpoint: any) => {
 
     try {
-        const response = await axios.get(endpoint, payload);
+        const response = await axios.get(endpoint);
         console.log("response in getMethod", response);
         return response;
 
@@ -64,9 +64,9 @@ const getMethod = async (endpoint: any, payload: any) => {
 
 //....LeaveHistory
 
-export const HistoryLeave = async (endpoint: any, payload: any) => {
+export const HistoryLeave = async (endpoint: any) => {
     try {
-        const response = await getMethod(endpoint, payload);
+        const response = await getMethod(endpoint);
         return response;
     } catch (error) {
         throw error;
@@ -76,9 +76,9 @@ export const HistoryLeave = async (endpoint: any, payload: any) => {
 
 //.....
 
-export const UserDetails = async (endpoint: any, payload: any) => {
+export const UserDetails = async (endpoint: any) => {
     try {
-        const response = await getMethod(endpoint, payload);
+        const response = await getMethod(endpoint);
         return response;
     } catch (error) {
         throw error;

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import { MdPendingActions } from 'react-icons/md';
 import { GrCompliance } from "react-icons/gr";
@@ -33,7 +32,7 @@ const DashboardPage = () => {
                                     {/* Employee Information Section */}
                                     <div className="flex mb-2 items-center">
                                         <div>
-                                            <img
+                                            <img 
                                                 className="w-24 h-24 mb-3 rounded-full shadow-lg"
                                                 src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
                                                 alt="Bonnie image"

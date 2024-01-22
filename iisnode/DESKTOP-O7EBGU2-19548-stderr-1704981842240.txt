@@ -1,4 +1,4 @@
-(node:13832) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(node:19548) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
  ⨯ upstream image response failed for /logo.jpg TypeError: fetch failed
     at Object.fetch (node:internal/deps/undici/undici:11730:11)

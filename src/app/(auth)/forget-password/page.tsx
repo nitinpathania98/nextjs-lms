@@ -1,16 +1,29 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ForgetPasswordTemplate from "./forgetPasswordTemplate";
+import email from "next-auth/providers/email";
+
+const initialFormValues = {
+    email: "",
+};
 
 export default function ForgotPassword() {
-    const [email, setEmail] = useState("");
+    const [formdata, setFormdata] = useState(initialFormValues);
     const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState<loginErrorType>();
+    const [errors, setErrors] = useState<forgetPasswordErrorType>();
 
-    const submit = (event: React.FormEvent) => {
-        event.preventDefault();
+
+    const onChangeData = (e: any) => {
+        setFormdata({
+            ...formdata,
+            [e.target.name]: e.target.value
+        })
+    }
+    const submit = (e: any) => {
+        e.preventDefault();
         setLoading(true);
         axios
             .post("", { email: email })
@@ -33,34 +46,13 @@ export default function ForgotPassword() {
     };
 
     return (
-        <>
-            <ToastContainer />
-            <div className="h-screen w-screen flex justify-center items-center">
-                <div className="w-[500px] p-5 rounded-lg shadow-lg">
-                    <h1 className="text-2xl font-bold">Forgot Passowrd ?</h1>
-                    <p> Do not worry it happens. just enter your email below and we will send an email to you.</p>
-                    <form onSubmit={submit}>
-                        <div className="mt-5">
-                            <label className="block">Email</label>
-                            <input
-                                type="email"
-                                placeholder="john@gmail.com"
-                                className="w-full h-10 p-2 border rounded-md outline-red-400"
-                                onChange={(event) => setEmail(event.target.value)}
-                            />
-                            <span className="text-red-500">{errors?.Email}</span>
-                        </div>
-                        <div className="mt-5">
-                            <button
-                                className="w-full bg-black p-2 rounded-lg text-white"
-                                disabled={loading}
-                            >
-                                {loading ? "Processing" : "Submit"}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </>
+        <ForgetPasswordTemplate
+            submit={submit}
+            onChangeData={onChangeData}
+            formdata={formdata}
+            loading={loading}
+            errors={{
+                Email: undefined,
+            }} />
     );
 }

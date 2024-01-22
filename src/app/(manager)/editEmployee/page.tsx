@@ -1,7 +1,6 @@
 "use client"
 import Navbar from '@/app/components/Navbar'
 import React, { useState } from 'react'
-import axios from 'axios'
 import toast from 'react-hot-toast'
 import { BASE_URL } from '@/services/baseUrl'
 import { registerUser } from '@/services/api'
@@ -19,7 +18,7 @@ const InitialformData = {
     city: "",
     address: "",
 }
-function CreateEmployee() {
+function EditEmployee() {
     const [formdata, setFormdata] = useState(InitialformData)
     const [loading, setLoading] = useState<boolean>(false)
     const [errors, setErrors] = useState<registerErrorType>({})
@@ -332,5 +331,4 @@ function CreateEmployee() {
         </>
     )
 }
-
-export default CreateEmployee
+export default EditEmployee
