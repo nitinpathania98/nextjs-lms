@@ -5,5 +5,5 @@ export interface ForgetPasswordInterface {
         email: string;
     };
     loading: boolean;
-    errors: forgetPasswordErrorType;
+    errors: any;
 }

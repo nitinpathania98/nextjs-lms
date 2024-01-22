@@ -4,18 +4,19 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSearchParams } from "next/navigation";
-import ResetPasswordTemplate from "./resetPasswordTemplate";
+import ResetPasswordTemplate from "./ResetPasswordTemplate";
 
 const initialFormValues = {
     password: "",
     cpassword: "",
 };
 
-export default function ResetPassword({ params, }: {
+export default function ResetPassword({ params }: {
     params: { email: string };
 }) {
     const searchParam = useSearchParams();
     const [authState, setAuthState] = useState(initialFormValues);
+    const [loading, setLoading] = useState(false);
 
     const onChangeData = (e: any) => {
         setAuthState({
@@ -23,39 +24,37 @@ export default function ResetPassword({ params, }: {
             [e.target.name]: e.target.value
         })
     }
-    const [loading, setLoading] = useState(false);
-    const submit = (event: React.FormEvent) => {
+
+    const submit = async (event: React.FormEvent) => {
         event.preventDefault();
         setLoading(true);
-        axios
-            .post("", {
+        try {
+            const response = await axios.post("", {
                 email: params.email,
                 signature: searchParam.get("signature"),
                 password: authState.password,
                 password_confirmation: authState.cpassword,
-            })
-            .then((res) => {
-                const response = res.data;
-                if (response.status == 400) {
-                    toast.error(response.message, { theme: "colored" });
-                } else if (response.status == 200) {
-                    toast.success(response.message, { theme: "colored" });
-                }
-            })
-            .catch((err) => {
-                setLoading(false);
-                console.log("err..", err);
             });
+
+            if (response.data.status === 400) {
+                toast.error(response.data.message, { theme: "colored" });
+            } else if (response.data.status === 200) {
+                toast.success(response.data.message, { theme: "colored" });
+            }
+        } catch (err) {
+            setLoading(false);
+            console.error("Error:", err);
+        }
     };
     return (
         <>
             <ToastContainer />
             <ResetPasswordTemplate
                 submit={submit}
-                onChangeData={ onChangeData}
-                formdata={authState }
-                loading={false}
-                errors={undefined } />
+                onChangeData={onChangeData}
+                formdata={authState}
+                loading={loading}
+                errors={undefined} />
         </>
     )
 }

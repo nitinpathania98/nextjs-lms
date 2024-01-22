@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ForgetPasswordTemplate from "./forgetPasswordTemplate";
-import email from "next-auth/providers/email";
-
+import ForgetPasswordTemplate from "./ForgetPasswordTemplate";
 const initialFormValues = {
     email: "",
 };
@@ -26,7 +24,7 @@ export default function ForgotPassword() {
         e.preventDefault();
         setLoading(true);
         axios
-            .post("", { email: email })
+            .post("", {  email: formdata.email })
             .then((res) => {
                 setLoading(false);
                 const response = res.data;
@@ -51,8 +49,6 @@ export default function ForgotPassword() {
             onChangeData={onChangeData}
             formdata={formdata}
             loading={loading}
-            errors={{
-                Email: undefined,
-            }} />
+            errors={errors} />
     );
 }
