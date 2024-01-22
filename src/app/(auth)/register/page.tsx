@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { BASE_URL } from '@/services/baseUrl'
 import { registerUser } from '@/services/api'
-import RegisterForm from './RegisterForm'
+import RegisterFormTemplate from './RegisterFormTemplate'
 const InitialformData = {
     employeeType: "",
     name: "",
@@ -72,7 +72,7 @@ function Register() {
 
     return (
         <>
-            <RegisterForm
+            <RegisterFormTemplate
                 formdata={formdata}
                 onChangeData={onChangeData}
                 onRegister={onRegister}

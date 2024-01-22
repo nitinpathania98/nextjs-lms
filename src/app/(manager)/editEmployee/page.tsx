@@ -162,6 +162,7 @@ function EditEmployee() {
                                                 placeholder="******"
                                                 type="password"
                                                 name="password"
+                                                autoComplete=''
                                                 value={formdata.password
                                                 }
                                                 onChange={onChangeData}
@@ -178,6 +179,7 @@ function EditEmployee() {
                                                 placeholder="******"
                                                 type="password"
                                                 name="confirmPassword"
+                                                autoComplete=''
                                                 value={formdata.confirmPassword
                                                 }
                                                 onChange={onChangeData}

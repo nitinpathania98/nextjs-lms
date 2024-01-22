@@ -1,9 +1,11 @@
+import { ChangeEvent, FormEvent } from "react";
+
 export interface ResetPasswordInterface {
-    submit: React.FormEventHandler<HTMLFormElement>;
-    onChangeData: React.ChangeEventHandler<HTMLInputElement>;
+    submit: (e: FormEvent<HTMLFormElement>) => void;
+    onChangeData: (e: ChangeEvent<HTMLInputElement>) => void;
     formdata: {
-        password: string,
-        cpassword: string,
+        password: string;
+        cPassword: string;
     };
     loading: boolean;
     errors: undefined;

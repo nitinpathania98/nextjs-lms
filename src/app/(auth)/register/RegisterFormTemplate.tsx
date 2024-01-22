@@ -3,7 +3,7 @@ import React from 'react';
 import { RegisterFormInterface } from './RegisterFormInterface';
 import Link from 'next/link';
 
-const RegisterForm: React.FC<RegisterFormInterface> = ({
+const RegisterFormTemplate: React.FC<RegisterFormInterface> = ({
     formdata,
     onChangeData,
     onRegister,
@@ -297,4 +297,4 @@ const RegisterForm: React.FC<RegisterFormInterface> = ({
     );
 };
 
-export default RegisterForm;
+export default RegisterFormTemplate;

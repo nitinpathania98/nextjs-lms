@@ -26,13 +26,13 @@ const DashboardPage = () => {
                                             <div className="text-textColor text-lg mx-2">Employee Details</div>
                                         </div>
 
-                                        <button className="flex items-center text-white text-sm text-center   bg-blue-500  py-2 px-4 rounded-md hover:bg-blue-600"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="text-white mx-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> <div>January 2, 2024</div></button>
+                                        <button className="flex items-center text-white text-sm text-center   bg-blue-500  py-2 px-4 rounded-md hover:bg-blue-600"><svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="text-white mx-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> <div>January 2, 2024</div></button>
                                     </div>
 
                                     {/* Employee Information Section */}
                                     <div className="flex mb-2 items-center">
                                         <div>
-                                            <img 
+                                            <img
                                                 className="w-24 h-24 mb-3 rounded-full shadow-lg"
                                                 src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
                                                 alt="Bonnie image"

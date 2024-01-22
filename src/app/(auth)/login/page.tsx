@@ -14,6 +14,9 @@ const initialFormValues = {
 function Login() {
 
     const [formdata, setFormdata] = useState(initialFormValues)
+    
+    const [loading, setLoading] = useState<boolean>(false)
+    const [errors, setErrors] = useState<loginErrorType>({})
 
     const onChangeData = (e: any) => {
         setFormdata({
@@ -22,8 +25,6 @@ function Login() {
         })
     }
 
-    const [loading, setLoading] = useState<boolean>(false)
-    const [errors, setErrors] = useState<loginErrorType>({})
 
     const onLogin = async (e: any) => {
         e.preventDefault();
