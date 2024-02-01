@@ -20,18 +20,19 @@ const LeaveHistoryTemplate: React.FC<LeaveHistoryInterface> = ({ leaveHistory })
                                         <tr className="bg-gray-300 ">
                                             <th className="border-2 border-black px-4 py-2">Leave Type</th>
                                             <th className="border-2 border-black px-4 py-2">Start Date</th>
-                                            <th className="border-2 border-black px-4 py-2">End Date</th>
+                                            <th className="border-2 border-black px-4 py-2">Duration</th>
                                             <th className="border-2 border-black px-4 py-2">Reason</th>
                                             <th className="border-2 border-black px-4 py-2">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody className='overflow-y-auto text-center'>
-                                        {leaveHistory.length > 0 && leaveHistory.map((result: any,) => (
-                                            <tr key={result?.id} >
-                                                <td className="border border-black px-4 py-2">{result.types}</td>
+                                        
+                                        {leaveHistory.length > 0 && leaveHistory.map((result: any, index) => (
+                                            <tr key={result.id || index} >
+                                                <td className="border border-black px-4 py-2">{result.leave_type}</td>
                                                 <td className="border border-black px-4 py-2">{result.startDate}</td>
-                                                <td className="border border-black px-4 py-2">{result.endDate}</td>
-                                                <td className="border border-black px-4 py-2">{result.leavereason}</td>
+                                                <td className="border border-black px-4 py-2">{result.duration} days</td>
+                                                <td className="border border-black px-4 py-2">{result.purpose}</td>
                                                 <td className="border border-black px-4 py-2">{result.status}</td>
                                             </tr>
                                         ))}

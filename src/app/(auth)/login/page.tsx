@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { UserLogin } from '@/services/api';
 import { BASE_URL } from '@/services/baseUrl';
 import toast from 'react-hot-toast';
@@ -12,11 +12,10 @@ const initialFormValues = {
 };
 
 function Login() {
-
     const [formdata, setFormdata] = useState(initialFormValues)
-    
     const [loading, setLoading] = useState<boolean>(false)
     const [errors, setErrors] = useState<loginErrorType>({})
+    const { data: session } = useSession();
 
     const onChangeData = (e: any) => {
         setFormdata({
@@ -25,47 +24,44 @@ function Login() {
         })
     }
 
-
     const onLogin = async (e: any) => {
         e.preventDefault();
-        setLoading(true)
-        console.log(formdata)
+        setLoading(true);
         try {
-            const url = `${BASE_URL}login`;
-            const response: any = await UserLogin(url, formdata);
-            console.log("response", response);
+            const url = 'http://localhost:8080/api/users/login';
+            const response = await UserLogin(url, formdata);
+            console.log(response)
+            const { token } = response.data;
+
+            // Set the HttpOnly cookie with the token
+            localStorage.setItem('token', token);
+            console.log('Token stored:', token);
+            // document.cookie = `jwt=${token}; path=/; max-age=${1 * 24 * 60 * 60}; secure; HttpOnly`;
+
             if (response.status === 200) {
-                setLoading(false);
-                toast.success("User loged In");
-                signIn("credentials", {
+            
+                toast.success('User logged in');
+                // Sign in the user and create a session
+                signIn('credentials', {
                     email: formdata.email,
                     password: formdata.password,
-                    callbackUrl: "/",
+                    callbackUrl: '/',
                     redirect: true,
-                })
+                });
+                console.log('New token:', token);
             }
         } catch (error: any) {
-            setLoading(false);
-            const response: any = error.response;
-            console.log(response, "error status")
-            if (response === 400) {
-                toast.error("Check the validations");
-                setLoading(false);
-                const message: any = error.response.data.errors;
-                console.log(message, "error message")
-                setErrors((prevState: registerErrorType) => {
-                    let updatedErrors: any = { ...prevState };
-                    Object.keys(message).forEach((key) => {
-                        updatedErrors[key] = message[key][0];
-                    });
-                    return updatedErrors;
-                });
+            const response = error.response;
+            if (response && response.status === 401) {
+                toast.error('Invalid email or password');
             } else {
-                setLoading(false);
-                toast.error("Something went wrong");
+                console.error('Error logging in:', error.message);
+                toast.error('Something went wrong');
             }
+        } finally {
+            setLoading(false);
         }
-    }
+    };
     return (
         <SignInTemplate onLogin={onLogin}
             onChangeData={onChangeData}

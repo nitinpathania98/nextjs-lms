@@ -4,12 +4,13 @@ import toast from 'react-hot-toast'
 import { BASE_URL } from '@/services/baseUrl';
 import { RequestLeave } from '@/services/api';
 import LeaveRequestTemplate from './LeaveRequestTemplate';
+import axios from 'axios';
 
 const initialValues = {
-    leaveType: '',
+    leave_type: '',
     startDate: '',
-    endDate: '',
-    leaveReason: '',
+    duration: '',
+    purpose: '',
 }
 const LeaveRequestComponent: React.FC = () => {
     const [formData, setFormdata] = useState(initialValues);
@@ -23,11 +24,10 @@ const LeaveRequestComponent: React.FC = () => {
 
     const handleOnSubmit = async (e: any) => {
         e.preventDefault();
-        alert("okkk")
         try {
-            const url = `${BASE_URL}leaveRequest`;
-            const response: any = await RequestLeave(url, formData);
-            console.log(response)
+            const url = `http://localhost:8080/leaveSubmit`;
+            // const response: any = await RequestLeave(url, formData);
+            const response: any = await axios.post(url, formData);
             toast.success("Leave request submitted successfully")
             setFormdata(initialValues);
         } catch (error) {

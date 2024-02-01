@@ -1,14 +1,14 @@
 export interface LeaveHistoryInterface {
     leaveHistory: {
-        types: string;
+        leave_type: string;
         startDate: string;
-        endDate: string;
-        leaveReason: string;
+        duration: string;
+        purpose: string;
         status: string;
     }[];
-    types: string;
+    leave_type: string;
     startDate: string;
-    endDate: string;
-    leaveReason: string;
+    duration: string;
+    purpose: string;
     status: string;
 }

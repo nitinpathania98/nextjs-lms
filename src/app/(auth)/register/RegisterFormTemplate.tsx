@@ -59,32 +59,19 @@ const RegisterFormTemplate: React.FC<RegisterFormInterface> = ({
                             </div>
 
                             <form method='POST' onSubmit={onRegister}>
-                                <div className="mb-3">
-                                    <label htmlFor="employeeType" className="block mb-2 text-sm font-medium text-textColor">
-                                        Type Of User
-                                    </label>
-                                    <input id="employeeType" className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
-                                        placeholder="HR"
-                                        type="text"
-                                        name="employeeType"
-                                        value={formdata.employeeType}
-                                        onChange={onChangeData}
-                                        required
-                                    />
-                                </div>
 
                                 <div className="mt-2 grid gap-6 mb-3 md:grid-cols-2">
                                     <div>
-                                        <label htmlFor="name" className="block mb-2 text-sm font-medium text-textColor ">
+                                        <label htmlFor="userName" className="block mb-2 text-sm font-medium text-textColor ">
                                             Full name
                                         </label>
                                         <input
-                                            id="name"
+                                            id="userName"
                                             className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
                                             placeholder="John Doe"
                                             type="text"
-                                            name="name"
-                                            value={formdata.name}
+                                            name="userName"
+                                            value={formdata.userName}
                                             onChange={onChangeData}
                                             required
                                         />
@@ -121,149 +108,12 @@ const RegisterFormTemplate: React.FC<RegisterFormInterface> = ({
                                             placeholder="******"
                                             type="password"
                                             name="password"
-                                            value={formdata.password
-                                            }
+                                            value={formdata.password}
                                             onChange={onChangeData}
                                             required
                                         />
                                         <span className='text-xs text-red-500'>{errors?.Password}</span>
                                     </div>
-                                    <div>
-                                        <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-textColor ">
-                                            Confirm Password
-                                        </label>
-                                        <input
-                                            id="confirmPassword"
-                                            className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
-                                            placeholder="******"
-                                            type="password"
-                                            name="confirmPassword"
-                                            value={formdata.confirmPassword
-                                            }
-                                            onChange={onChangeData}
-                                            required
-                                        />
-                                    </div>
-                                    <div >
-                                        <label htmlFor="phoneNumber" className="block mb-2 text-sm font-medium text-textColor ">
-                                            Phone Number
-                                        </label>
-                                        <input
-                                            id="phoneNumber"
-                                            className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
-                                            placeholder="+91*********"
-                                            type="number"
-                                            name="phoneNumber"
-                                            value={formdata.phoneNumber
-                                            }
-                                            onChange={onChangeData}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="mt-2 grid gap-6 mb-3 md:grid-cols-2">
-                                    <div>
-                                        <label htmlFor="department" className="block mb-2 text-sm font-medium text-textColor">
-                                            Department
-                                        </label>
-                                        <input
-                                            id="department"
-                                            className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
-
-                                            placeholder="Web Designing"
-                                            type="text"
-                                            name="department"
-                                            value={formdata.department
-                                            }
-                                            onChange={onChangeData}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="designation" className="block mb-2 text-sm font-medium text-textColor">
-                                            Designation
-                                        </label>
-                                        <input
-                                            id="designation"
-                                            className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
-                                            placeholder="Sr. Developer"
-                                            type="text"
-                                            name="designation"
-                                            value={formdata.designation
-                                            }
-                                            onChange={onChangeData}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div className="mt-2 grid gap-6 mb-3 md:grid-cols-3">
-                                    <div>
-                                        <label htmlFor="country" className="block mb-2 text-sm font-medium text-textColor">
-                                            Country
-                                        </label>
-                                        <input
-                                            id="country"
-                                            className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
-                                            placeholder="India"
-                                            type="text"
-                                            name="country"
-                                            value={formdata.country
-                                            }
-                                            onChange={onChangeData}
-                                            required
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="state" className="block mb-2 text-sm font-medium text-textColor">
-                                            State
-                                        </label>
-                                        <input
-                                            id="state"
-                                            className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
-                                            placeholder="Punjab"
-                                            type="text"
-                                            name="state"
-                                            value={formdata.state
-                                            }
-                                            onChange={onChangeData}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="city" className="block mb-2 text-sm font-medium text-textColor">
-                                            City
-                                        </label>
-                                        <input
-                                            id="city"
-                                            className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
-                                            placeholder="Chandigarh"
-                                            type="text"
-                                            name="city"
-                                            value={formdata.city
-                                            }
-                                            onChange={onChangeData}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div className="mb-6">
-                                    <label htmlFor="address" className="block mb-2 text-sm font-medium text-textColor ">
-                                        Full Address
-                                    </label>
-                                    <textarea
-                                        id="address"
-                                        className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
-                                        placeholder="Enter your current full address"
-                                        rows={3}
-                                        name="address"
-                                        value={formdata.address
-                                        }
-                                        onChange={onChangeData}
-                                        required
-
-                                    />
                                 </div>
 
                                 <button type="submit" className="flex items-center text-sm text-center p-2 

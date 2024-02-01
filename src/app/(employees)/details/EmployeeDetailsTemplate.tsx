@@ -7,6 +7,7 @@ import { MdSecurity } from 'react-icons/md';
 const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
   employeeDetails,
 }) => {
+
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
@@ -54,7 +55,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                           Full Name
                         </p>
                       </div>
-                      <div><h3>{result.name}</h3> </div>
+                      <div><h3>{index.userName}</h3> </div>
                       <div className="flex justify-end">
                         <button className="edit" >
                           Edit Name

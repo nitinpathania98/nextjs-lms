@@ -4,12 +4,13 @@ import { BASE_URL } from '@/services/baseUrl';
 import { HistoryLeave } from '@/services/api';
 import LeaveHistoryTemplate from './LeaveHistoryTemplate';
 import { LeaveHistoryInterface } from './LeaveHistoryInterface';
+import axios from 'axios';
 
 const initialValues = {
-    types: '',
+    leave_types: '',
     startDate: '',
-    endDate: '',
-    leaveReason: '',
+    duration: '',
+    purpose: '',
     status: '',
 }
 const History: React.FC = () => {
@@ -19,25 +20,22 @@ const History: React.FC = () => {
     useEffect(() => {
         const fetchLeaveHistory = async () => {
             try {
-                const url = `${BASE_URL}leaveHistory`;
-                const response = await HistoryLeave(url);
-                console.log(response);
-                setLeaveHistory([response.data.leaveHistory]);
+                const url = `http://localhost:8080/leaveSubmit`;
+                const response: any = await axios.get(url);
+                setLeaveHistory(response.data);
             } catch (error) {
                 console.error('Error fetching leave history:', error);
             }
         };
         fetchLeaveHistory();
     }, []);
-
-    console.log(leaveHistory, "yahoo")
     return (
         <LeaveHistoryTemplate
             leaveHistory={leaveHistory}
-            types={''}
+            leave_type={''}
             startDate={''}
-            endDate={''}
-            leaveReason={''}
+            duration={''}
+            purpose={''}
             status={''}
         />
     );

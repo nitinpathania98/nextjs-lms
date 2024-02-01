@@ -6,7 +6,7 @@ import EmployeeDetailsTemplate from "./EmployeeDetailsTemplate";
 import { EmployeeDetailsInterface } from "./EmployeeDetailsInterface";
 
 const initialValues = {
-  name: "",
+  userName: "",
   email: "",
   password: "",
   designation: "",
@@ -21,15 +21,38 @@ const initialValues = {
 const EmployeeDetailsComponent: React.FC = () => {
   const [employeeDetails, setEmployeeDetails] = useState<EmployeeDetailsInterface['employeeDetails']>([initialValues]);
 
+
   useEffect(() => {
+
     const fetchUserDetails = async () => {
       try {
-        const url = `${BASE_URL}userDetail`;
-        const response = await UserDetails(url)
-        console.log(response)
-        setEmployeeDetails(response.data);
-      } catch (error) {
-        console.error("Error fetching employee details:", error);
+        const storedToken = localStorage.getItem('token');
+        console.log('Stored Token:', storedToken);
+        if (!storedToken) {
+          console.error('Token not found. Redirect to login page.');
+          return;
+        }
+
+        const response = await fetch('http://localhost:8080/api/users/user/details', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${storedToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          const userDetails = await response.json();
+          console.log('User details:', userDetails);
+          setEmployeeDetails(userDetails);
+        } else if (response.status === 401) {
+          console.error('Unauthorized. Redirect to login page or renew token.');
+        } else {
+          // Handle other errors
+          console.error('Failed to fetch user details');
+        }
+      } catch (error: any) {
+        console.error('Error fetching user details:', error.message);
       }
     };
 

@@ -1,6 +1,6 @@
 export interface EmployeeDetailsInterface {
   employeeDetails: {
-    name: string;
+    userName: string;
     email: string;
     password: string;
     designation: string;

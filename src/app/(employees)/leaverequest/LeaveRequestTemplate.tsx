@@ -22,16 +22,16 @@ const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
                                     <h2 className=" text-xl md:text-2xl  mb-4">Leave Request</h2>
                                     <form onSubmit={handleOnSubmit} method='POST'>
                                         <div className="mb-6">
-                                            <label htmlFor="leaveType" className="block mb-2 text-sm font-medium text-textColor">
+                                            <label htmlFor="leave_type" className="block mb-2 text-sm font-medium text-textColor">
                                                 Leave Type:
                                             </label>
                                             <input
                                                 type='text'
-                                                id="leaveType"
-                                                name='leaveType'
+                                                id="leave_type"
+                                                name='leave_type'
                                                 required
                                                 onChange={dataChange}
-                                                value={formData.leaveType}
+                                                value={formData.leave_type}
                                                 className="cursor-pointer bg-cardColor border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
                                             />
                                         </div>
@@ -52,30 +52,31 @@ const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
                                                 />
                                             </div>
                                             <div>
-                                                <label htmlFor="endDate" className="block mb-2 text-sm font-medium text-textColor ">
-                                                    End Date:
+                                                <label htmlFor="duration" className="block mb-2 text-sm font-medium text-textColor ">
+                                                    Duration:
                                                 </label>
                                                 <input
-                                                    type="date"
-                                                    id="endDate"
+                                                    type="text"
+                                                    id="duration"
                                                     className="cursor-pointer bg-cardColor border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
-                                                    name="endDate"
+                                                    name="duration"
                                                     onChange={dataChange}
-                                                    value={formData?.endDate || ''}
+                                                    value={formData?.duration || ''}
                                                     required
+                                                    placeholder="10 days"
                                                 />
                                             </div>
                                         </div>
                                         <div className="mb-6">
-                                            <label htmlFor="leaveReason" className="block mb-2 text-sm font-medium text-textColor ">
-                                                Leave Reason
+                                            <label htmlFor="purpose" className="block mb-2 text-sm font-medium text-textColor ">
+                                                Leave Purpose
                                             </label>
                                             <input
                                                 type='text'
-                                                id='leaveReason'
-                                                name='leaveReason'
+                                                id='purpose'
+                                                name='purpose'
                                                 onChange={dataChange}
-                                                value={formData?.leaveReason || ''}
+                                                value={formData?.purpose || ''}
                                                 required
                                                 className="cursor-pointer bg-cardColor border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
                                                 placeholder="Give reason for leave"

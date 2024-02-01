@@ -4,9 +4,9 @@ export interface LeaveRequestInterface {
     handleOnSubmit: (e: FormEvent<HTMLFormElement>) => void;
     dataChange: (e: ChangeEvent<HTMLInputElement>) => void;
     formData: {
-        leaveType: string;
+        leave_type: string;
         startDate: string;
-        endDate: string;
-        leaveReason: string;
+        duration: string;
+        purpose: string;
     };
 }
