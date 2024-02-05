@@ -28,18 +28,16 @@ function Login() {
         e.preventDefault();
         setLoading(true);
         try {
-            const url = 'http://localhost:8080/api/users/login';
-            const response = await UserLogin(url, formdata);
+            const url = 'users/login';
+            const response:any = await UserLogin(url, formdata);
             console.log(response)
             const { token } = response.data;
 
-            // Set the HttpOnly cookie with the token
             localStorage.setItem('token', token);
             console.log('Token stored:', token);
-            // document.cookie = `jwt=${token}; path=/; max-age=${1 * 24 * 60 * 60}; secure; HttpOnly`;
 
             if (response.status === 200) {
-            
+
                 toast.success('User logged in');
                 // Sign in the user and create a session
                 signIn('credentials', {

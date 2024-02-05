@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { BASE_URL } from "@/services/baseUrl";
 import { UserDetails } from "@/services/api";
 import EmployeeDetailsTemplate from "./EmployeeDetailsTemplate";
 import { EmployeeDetailsInterface } from "./EmployeeDetailsInterface";
@@ -19,15 +18,13 @@ const initialValues = {
 };
 
 const EmployeeDetailsComponent: React.FC = () => {
-  const [employeeDetails, setEmployeeDetails] = useState<EmployeeDetailsInterface['employeeDetails']>([initialValues]);
+  const [employeeDetails, setEmployeeDetails] = useState<EmployeeDetailsInterface>({ employeeDetails: [], });
 
 
   useEffect(() => {
-
     const fetchUserDetails = async () => {
       try {
         const storedToken = localStorage.getItem('token');
-        console.log('Stored Token:', storedToken);
         if (!storedToken) {
           console.error('Token not found. Redirect to login page.');
           return;
@@ -43,12 +40,12 @@ const EmployeeDetailsComponent: React.FC = () => {
 
         if (response.ok) {
           const userDetails = await response.json();
-          console.log('User details:', userDetails);
-          setEmployeeDetails(userDetails);
+          setEmployeeDetails({
+            employeeDetails: [userDetails],
+          });
         } else if (response.status === 401) {
           console.error('Unauthorized. Redirect to login page or renew token.');
         } else {
-          // Handle other errors
           console.error('Failed to fetch user details');
         }
       } catch (error: any) {
@@ -62,7 +59,7 @@ const EmployeeDetailsComponent: React.FC = () => {
   return (
     <>
       <EmployeeDetailsTemplate
-        employeeDetails={employeeDetails}
+        employeeDetails={employeeDetails.employeeDetails}
       />
     </>
   );

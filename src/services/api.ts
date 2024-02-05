@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "./baseUrl";
 
 //...registerUser
 export const registerUser = async (endpoint: any, payload: any) => {
@@ -36,7 +37,7 @@ export const RequestLeave = async (endpoint: any, payload: any) => {
 const postMethod = async (endpoint: any, payload: any) => {
 
     try {
-        const response = await axios.post(endpoint, payload);
+        const response = await axios.post(`${BASE_URL}${endpoint}`, payload);
         return response;
 
     } catch (error) {
@@ -50,12 +51,10 @@ const postMethod = async (endpoint: any, payload: any) => {
 const getMethod = async (endpoint: any) => {
 
     try {
-        const response = await axios.get(endpoint);
-        console.log("response in getMethod", response);
+        const response = await axios.get(`${BASE_URL}${endpoint}`);
         return response;
 
     } catch (error) {
-        console.log("error in getMethod", error);
         throw error;
     }
 }

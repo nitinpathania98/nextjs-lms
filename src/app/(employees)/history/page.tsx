@@ -1,13 +1,11 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { BASE_URL } from '@/services/baseUrl';
 import { HistoryLeave } from '@/services/api';
 import LeaveHistoryTemplate from './LeaveHistoryTemplate';
 import { LeaveHistoryInterface } from './LeaveHistoryInterface';
-import axios from 'axios';
 
 const initialValues = {
-    leave_types: '',
+    leaveType: '',
     startDate: '',
     duration: '',
     purpose: '',
@@ -20,8 +18,8 @@ const History: React.FC = () => {
     useEffect(() => {
         const fetchLeaveHistory = async () => {
             try {
-                const url = `http://localhost:8080/leaveSubmit`;
-                const response: any = await axios.get(url);
+                const url = `leave/leaveDetails`;
+                const response: any = await HistoryLeave(url);
                 setLeaveHistory(response.data);
             } catch (error) {
                 console.error('Error fetching leave history:', error);
@@ -32,7 +30,7 @@ const History: React.FC = () => {
     return (
         <LeaveHistoryTemplate
             leaveHistory={leaveHistory}
-            leave_type={''}
+            leaveType={''}
             startDate={''}
             duration={''}
             purpose={''}

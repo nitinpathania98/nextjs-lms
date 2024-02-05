@@ -1,5 +1,8 @@
+import { Key } from "react";
+
 export interface EmployeeDetailsInterface {
   employeeDetails: {
+    id: Key | null | undefined;
     userName: string;
     email: string;
     password: string;

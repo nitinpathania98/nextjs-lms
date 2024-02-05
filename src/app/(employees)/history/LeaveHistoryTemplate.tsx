@@ -26,10 +26,10 @@ const LeaveHistoryTemplate: React.FC<LeaveHistoryInterface> = ({ leaveHistory })
                                         </tr>
                                     </thead>
                                     <tbody className='overflow-y-auto text-center'>
-                                        
+
                                         {leaveHistory.length > 0 && leaveHistory.map((result: any, index) => (
                                             <tr key={result.id || index} >
-                                                <td className="border border-black px-4 py-2">{result.leave_type}</td>
+                                                <td className="border border-black px-4 py-2">{result.leaveType}</td>
                                                 <td className="border border-black px-4 py-2">{result.startDate}</td>
                                                 <td className="border border-black px-4 py-2">{result.duration} days</td>
                                                 <td className="border border-black px-4 py-2">{result.purpose}</td>

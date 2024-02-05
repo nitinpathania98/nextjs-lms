@@ -7,7 +7,7 @@ import { MdSecurity } from 'react-icons/md';
 const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
   employeeDetails,
 }) => {
-
+  const user = employeeDetails[0];
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
@@ -15,9 +15,9 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
         <Navbar />
         <div className="mx-auto max-w-screen-2xl p-4 md:p-2 2xl:p-5">
           <div className='w-auto  '>
-            <div className='p-1 '>
-              {employeeDetails.length > 0 && employeeDetails.map((result: any, index: any) => (
-                <div key={index} className="middleSection  h-full  w-11/12 m-auto flex flex-col  p-2 gap-6  ">
+            <div className='p-1'>
+              {employeeDetails.length > 0 && employeeDetails.map((result: any, index) => (
+                <div key={result || index} className="middleSection  h-full  w-11/12 m-auto flex flex-col  p-2 gap-6  ">
                   <div className="firstSection  flex justify-between items-center">
                     <div>
                       <h1 >Your Info</h1>
@@ -55,7 +55,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                           Full Name
                         </p>
                       </div>
-                      <div><h3>{index.userName}</h3> </div>
+                      <div><h3>{result.userName}</h3> </div>
                       <div className="flex justify-end">
                         <button className="edit" >
                           Edit Name

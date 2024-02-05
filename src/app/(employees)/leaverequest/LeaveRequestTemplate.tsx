@@ -6,7 +6,8 @@ import { LeaveRequestInterface } from './LeaveRequestInterface';
 const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
     dataChange,
     handleOnSubmit,
-    formData,
+    formdata,
+    leaveTypes,
 }) => {
     return (
         <div>
@@ -21,20 +22,24 @@ const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
                                 <div className="mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-gray-200" >
                                     <h2 className=" text-xl md:text-2xl  mb-4">Leave Request</h2>
                                     <form onSubmit={handleOnSubmit} method='POST'>
-                                        <div className="mb-6">
-                                            <label htmlFor="leave_type" className="block mb-2 text-sm font-medium text-textColor">
-                                                Leave Type:
-                                            </label>
-                                            <input
-                                                type='text'
-                                                id="leave_type"
-                                                name='leave_type'
-                                                required
-                                                onChange={dataChange}
-                                                value={formData.leave_type}
-                                                className="cursor-pointer bg-cardColor border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
-                                            />
-                                        </div>
+                                        <label htmlFor="leaveType" className="block mb-2 text-sm font-medium text-textColor">
+                                            Leave Type:
+                                        </label>
+                                        <select
+                                            id="leaveType"
+                                            name="leaveType"
+                                            required
+                                            onChange={dataChange}
+                                            value={formdata.leaveType}
+                                            className="cursor-pointer bg-cardColor border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
+                                        >
+                                            <option value="" disabled>Select Leave Type</option>
+                                            {leaveTypes.map((leaveType) => (
+                                                <option key={leaveType.leave_type_id} value={leaveType.leave_type_name}>
+                                                    {leaveType.leave_type_name}
+                                                </option>
+                                            ))}
+                                        </select>
 
                                         <div className="mt-2 grid gap-6 mb-6 md:grid-cols-2">
                                             <div>
@@ -47,7 +52,7 @@ const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
                                                     className="cursor-pointer bg-cardColor border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
                                                     name="startDate"
                                                     onChange={dataChange}
-                                                    value={formData?.startDate || ''}
+                                                    value={formdata.startDate}
                                                     required
                                                 />
                                             </div>
@@ -61,7 +66,7 @@ const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
                                                     className="cursor-pointer bg-cardColor border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
                                                     name="duration"
                                                     onChange={dataChange}
-                                                    value={formData?.duration || ''}
+                                                    value={formdata.duration}
                                                     required
                                                     placeholder="10 days"
                                                 />
@@ -76,7 +81,7 @@ const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
                                                 id='purpose'
                                                 name='purpose'
                                                 onChange={dataChange}
-                                                value={formData?.purpose || ''}
+                                                value={formdata.purpose}
                                                 required
                                                 className="cursor-pointer bg-cardColor border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
                                                 placeholder="Give reason for leave"
