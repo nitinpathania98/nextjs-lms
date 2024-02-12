@@ -1,12 +1,11 @@
 "use client"
-import Image from "next/image";
-import { AiOutlineHome } from "react-icons/ai";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdHistory, MdRequestPage, MdOutlineSettingsApplications, MdCreate } from "react-icons/md";
-import { TbListDetails } from "react-icons/tb";
-import Link from "next/link";
-import { useContext } from "react";
-import { SidebarContext } from "@/context/SidebarContext";
-import { usePathname } from 'next/navigation'
+import React from 'react';
+import { Image } from '@fluentui/react';
+import { useContext } from 'react';
+import { SidebarContext } from '@/context/SidebarContext';
+import { usePathname } from 'next/navigation';
+import { MdCreate, MdHistory, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineDetails, MdOutlineHome, MdRequestPage, MdSettingsApplications } from 'react-icons/md';
+import Link from 'next/link';
 
 interface SidebarItem {
     name: string;
@@ -16,36 +15,35 @@ interface SidebarItem {
 
 const sidebarItems: SidebarItem[] = [
     {
-        name: "Home",
-        href: "/",
-        icon: AiOutlineHome,
+        name: 'Home',
+        href: '/',
+        icon: MdOutlineHome,
     },
     {
-        name: "Leave Request",
-        href: "/leaverequest",
+        name: 'Leave Request',
+        href: '/leaverequest',
         icon: MdRequestPage,
     },
     {
-        name: "History",
-        href: "/history",
+        name: 'History',
+        href: '/history',
         icon: MdHistory,
     },
     {
-        name: "Employee Details",
-        href: "/details",
-        icon: TbListDetails,
+        name: 'Employee Details',
+        href: '/details',
+        icon: MdOutlineDetails,
     },
     {
-        name: "Leave Applications",
-        href: "/leaveApplications",
-        icon: MdOutlineSettingsApplications,
+        name: 'Leave Applications',
+        href: '/leaveApplications',
+        icon: MdSettingsApplications,
     },
     {
-        name: "Edit Profile",
-        href: "/editEmployee",
+        name: 'Edit Profile',
+        href: '/editEmployee',
         icon: MdCreate,
     },
-
 ];
 
 const Sidebar: React.FC = () => {
@@ -54,15 +52,15 @@ const Sidebar: React.FC = () => {
 
     return (
         <>
-            <div className="sidebar__wrapper h-full ">
+            <div className="sidebar__wrapper  h-screen ">
                 <button className="btn" onClick={toggleSidebarcollapse}>
                     {isCollapsed ? <MdKeyboardArrowRight /> : <MdKeyboardArrowLeft />}
                 </button>
-                <aside className="sidebar " data-collapse={isCollapsed}>
+                <aside className="sidebar" data-collapse={isCollapsed}>
                     <div className="sidebar__top">
                         <Image
                             width={80}
-                            height={80}
+                            height={30}
                             className="sidebar__logo"
                             src="/logo.jpg"
                             alt="logo"
@@ -73,7 +71,7 @@ const Sidebar: React.FC = () => {
                         {sidebarItems.map(({ name, href, icon: Icon }) => (
                             <li className="sidebar__item" key={name}>
                                 <Link
-                                    className={`sidebar__link ${pathname === href ? "sidebar__link--active" : ""
+                                    className={`sidebar__link ${pathname === href ? 'sidebar__link--active' : ''
                                         }`}
                                     href={href}
                                 >

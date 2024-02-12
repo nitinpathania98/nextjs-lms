@@ -1,9 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast'
-import { RequestLeave } from '@/services/api';
+import { LeaveTypes, RequestLeave } from '@/services/api';
 import LeaveRequestTemplate from './LeaveRequestTemplate';
-import axios from 'axios';
 
 const initialValues = {
     leaveType: '',
@@ -39,7 +38,8 @@ const LeaveRequestComponent: React.FC = () => {
     useEffect(() => {
         const fetchLeaveTypes = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/leaveTypesDetails');
+                const url = `leaveTypesDetails`;
+                const response: any = await LeaveTypes(url);
                 setLeaveTypes(response.data)
             } catch (error) {
                 console.error('Error fetching leaveTypes:', error);

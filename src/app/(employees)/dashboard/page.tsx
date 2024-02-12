@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { MdPendingActions } from 'react-icons/md';
 import { GrCompliance } from "react-icons/gr";

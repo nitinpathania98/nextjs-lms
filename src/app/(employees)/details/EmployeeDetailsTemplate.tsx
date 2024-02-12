@@ -1,13 +1,73 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Sidebar from '@/app/components/Sidebar';
 import { EmployeeDetailsInterface } from './EmployeeDetailsInterface';
 import { MdSecurity } from 'react-icons/md';
+import { Button, Dialog, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Input, Label, makeStyles } from '@fluentui/react-components';
+import toast from 'react-hot-toast';
+import { CreateProfile } from '@/services/api';
+const InitialformData = {
+  userName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  designation: "",
+  department: "",
+  phoneNumber: "",
+  country: "",
+  state: "",
+  city: "",
+  address: "",
+}
+
+const useStyles = makeStyles({
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    rowGap: "10px",
+  },
+});
 const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
   employeeDetails,
+
 }) => {
+  const [formdata, setFormdata] = useState(InitialformData)
   const user = employeeDetails[0];
+  const styles = useStyles();
+
+  //........onchange for data entry on update 
+  const onChangeData = (e: any) => {
+    setFormdata({
+      ...formdata,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  ///......formsubmit onhandle
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      const url = `profile/user`;
+      const response: any = await CreateProfile(url, formdata);
+      if (response.status === 201) {
+        console.log("Data is", response);
+        toast.success("User Data Added successfully");
+        setFormdata(InitialformData);
+
+      }
+    } catch (error: any) {
+      const response: any = error.response.status;
+      console.log(response, "error status")
+      if (response === 400) {
+        const message: any = error.response.data.errors;
+        console.log(message, "error message")
+      } else {
+        toast.error("Something went wrong");
+      }
+    }
+  };
+
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
@@ -203,9 +263,82 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         <h3>Personal Details</h3>
                       </div>
                       <div className="flex justify-end">
-                        <button className="edit">
-                          Edit Details
-                        </button>
+                        <Dialog modalType="non-modal">
+                          <DialogTrigger disableButtonEnhancement>
+                            <Button>Edit Details</Button>
+                          </DialogTrigger>
+                          <DialogSurface aria-describedby={undefined}>
+                            <form onSubmit={handleSubmit}>
+                              <DialogBody>
+                                <DialogTitle>Personal Details</DialogTitle>
+                                <DialogContent className={styles.content}>
+
+                                  <Label required htmlFor="department">
+                                    Department
+                                  </Label>
+                                  <Input required type="text" id="department"
+                                    name="department"
+                                    value={formdata.department}
+                                    onChange={onChangeData} />
+
+                                  <Label required htmlFor="designation">
+                                    Designation
+                                  </Label>
+                                  <Input required type="text" id="designation"
+                                    name="designation"
+                                    value={formdata.designation}
+                                    onChange={onChangeData}
+                                  />
+
+                                  <Label required htmlFor="country">
+                                    Country
+                                  </Label>
+                                  <Input required type="text" id="country"
+                                    name="country"
+                                    value={formdata.country}
+                                    onChange={onChangeData}
+                                  />
+
+                                  <Label required htmlFor="state">
+                                    State
+                                  </Label>
+                                  <Input required type="text" id="state"
+                                    name="state"
+                                    value={formdata.state}
+                                    onChange={onChangeData}
+                                  />
+
+                                  <Label required htmlFor="city">
+                                    City
+                                  </Label>
+                                  <Input required type="text" id="city"
+                                    name="city"
+                                    value={formdata.city}
+                                    onChange={onChangeData}
+                                  />
+
+                                  <Label required htmlFor="address">
+                                    Address
+                                  </Label>
+                                  <Input required type="text" id="address"
+                                    name="address"
+                                    value={formdata.address}
+                                    onChange={onChangeData}
+                                  />
+
+                                </DialogContent>
+                                <DialogActions>
+                                  <DialogTrigger disableButtonEnhancement>
+                                    <Button appearance="secondary">Close</Button>
+                                  </DialogTrigger>
+                                  <Button type="submit" appearance="primary">
+                                    Submit
+                                  </Button>
+                                </DialogActions>
+                              </DialogBody>
+                            </form>
+                          </DialogSurface>
+                        </Dialog>
                       </div>
                     </div>
                     <hr />

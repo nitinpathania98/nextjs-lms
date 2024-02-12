@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { signIn, useSession } from "next-auth/react";
 import { UserLogin } from '@/services/api';
 import { BASE_URL } from '@/services/baseUrl';
@@ -12,32 +12,30 @@ const initialFormValues = {
 };
 
 function Login() {
-    const [formdata, setFormdata] = useState(initialFormValues)
-    const [loading, setLoading] = useState<boolean>(false)
-    const [errors, setErrors] = useState<loginErrorType>({})
+    const [formdata, setFormdata] = useState(initialFormValues);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [errors, setErrors] = useState<loginErrorType>({});
     const { data: session } = useSession();
 
     const onChangeData = (e: any) => {
         setFormdata({
             ...formdata,
             [e.target.name]: e.target.value
-        })
-    }
+        });
+    };
 
     const onLogin = async (e: any) => {
         e.preventDefault();
         setLoading(true);
         try {
             const url = 'users/login';
-            const response:any = await UserLogin(url, formdata);
-            console.log(response)
-            const { token } = response.data;
+            const response: any = await UserLogin(url, formdata);
+            const { accessToken, refreshToken } = response.data;
 
-            localStorage.setItem('token', token);
-            console.log('Token stored:', token);
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
 
             if (response.status === 200) {
-
                 toast.success('User logged in');
                 // Sign in the user and create a session
                 signIn('credentials', {
@@ -46,7 +44,6 @@ function Login() {
                     callbackUrl: '/',
                     redirect: true,
                 });
-                console.log('New token:', token);
             }
         } catch (error: any) {
             const response = error.response;
@@ -60,14 +57,16 @@ function Login() {
             setLoading(false);
         }
     };
+
     return (
-        <SignInTemplate onLogin={onLogin}
+        <SignInTemplate
+            onLogin={onLogin}
             onChangeData={onChangeData}
             formdata={formdata}
             loading={loading}
             errors={errors}
         />
-    )
+    );
 }
 
-export default Login
+export default Login;

@@ -5,10 +5,10 @@ import "./styles/globals.css"
 import NextAuthProvider from '@/app/provider/NextAuthProvider'
 import { SidebarProvider } from '@/context/SidebarContext'
 import { Toaster } from 'react-hot-toast'
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
 import { useEffect, useState } from 'react'
 import Loader from '@/components/common/Loader'
+import { Providers } from './provider'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,11 +35,18 @@ export default function RootLayout({
             <Loader />
           ) : (
             <main>
-              <NextAuthProvider>{children}</NextAuthProvider>
+              <NextAuthProvider>
+                <Providers>
+
+                  {children}
+
+                </Providers>
+              </NextAuthProvider>
             </main>
           )}
 
           <Toaster />
+
         </body>
       </html>
     </SidebarProvider>

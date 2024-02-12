@@ -3,10 +3,10 @@ import Navbar from '@/app/components/Navbar'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { BASE_URL } from '@/services/baseUrl'
-import { registerUser } from '@/services/api'
+import { CreateProfile, registerUser } from '@/services/api'
 import Sidebar from '@/app/components/Sidebar'
 const InitialformData = {
-    name: "",
+    userName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -36,12 +36,12 @@ function EditEmployee() {
         e.preventDefault();
         setLoading(true)
         try {
-            const url = `${BASE_URL}register`;
-            const response: any = await registerUser(url, formdata);
-            if (response.status === 200) {
+            const url = `profile/user`;
+            const response: any = await CreateProfile(url, formdata);
+            if (response.status === 201) {
                 setLoading(false);
                 console.log("Data is", response);
-                toast.success("User Created successfully. Go to login Page");
+                toast.success("User Data Added successfully");
                 setFormdata(InitialformData);
 
             }
@@ -117,16 +117,16 @@ function EditEmployee() {
 
                                     <div className="mt-2 grid gap-6 mb-6 md:grid-cols-2">
                                         <div>
-                                            <label htmlFor="name" className="block mb-2 text-sm font-medium text-textColor ">
+                                            <label htmlFor="userName" className="block mb-2 text-sm font-medium text-textColor ">
                                                 Full name
                                             </label>
                                             <input
-                                                id="name"
+                                                id="userName"
                                                 className="bg-card border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5 "
                                                 placeholder="John Doe"
                                                 type="text"
-                                                name="name"
-                                                value={formdata.name}
+                                                name="userName"
+                                                value={formdata.userName}
                                                 onChange={onChangeData}
                                                 required
                                             />
@@ -163,8 +163,7 @@ function EditEmployee() {
                                                 type="password"
                                                 name="password"
                                                 autoComplete=''
-                                                value={formdata.password
-                                                }
+                                                value={formdata.password}
                                                 onChange={onChangeData}
                                                 required
                                             />

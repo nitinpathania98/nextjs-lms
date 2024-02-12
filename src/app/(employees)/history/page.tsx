@@ -21,6 +21,7 @@ const History: React.FC = () => {
                 const url = `leave/leaveDetails`;
                 const response: any = await HistoryLeave(url);
                 setLeaveHistory(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error('Error fetching leave history:', error);
             }

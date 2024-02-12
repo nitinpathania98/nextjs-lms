@@ -20,12 +20,13 @@ const initialValues = {
 const EmployeeDetailsComponent: React.FC = () => {
   const [employeeDetails, setEmployeeDetails] = useState<EmployeeDetailsInterface>({ employeeDetails: [], });
 
-
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const storedToken = localStorage.getItem('token');
-        if (!storedToken) {
+        let accessToken = localStorage.getItem('accessToken');
+        let refreshToken = localStorage.getItem('refreshToken');
+
+        if (!accessToken || !refreshToken) {
           console.error('Token not found. Redirect to login page.');
           return;
         }
@@ -33,7 +34,7 @@ const EmployeeDetailsComponent: React.FC = () => {
         const response = await fetch('http://localhost:8080/api/users/user/details', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${storedToken}`,
+            'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
           },
         });
@@ -44,7 +45,23 @@ const EmployeeDetailsComponent: React.FC = () => {
             employeeDetails: [userDetails],
           });
         } else if (response.status === 401) {
-          console.error('Unauthorized. Redirect to login page or renew token.');
+          // Token expired, try refreshing the token
+          const refreshResponse = await fetch('http://localhost:8080/api/refresh', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${refreshToken}`,
+              'Content-Type': 'application/json',
+            },
+          });
+
+          if (refreshResponse.ok) {
+            const { accessToken: newAccessToken } = await refreshResponse.json();
+            localStorage.setItem('token', newAccessToken);
+            // Retry fetching user details with the new access token
+            fetchUserDetails();
+          } else {
+            console.error('Failed to refresh token. Redirect to login page.');
+          }
         } else {
           console.error('Failed to fetch user details');
         }

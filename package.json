@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fluentui/react": "^8.115.4",
+    "@fluentui/react-components": "^9.46.3",
+    "@fluentui/react-icons": "^2.0.226",
+    "@griffel/react": "^1.5.20",
     "@next/font": "^14.0.4",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",

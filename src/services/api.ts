@@ -33,6 +33,70 @@ export const RequestLeave = async (endpoint: any, payload: any) => {
     }
 }
 
+
+
+// Update User Details
+export const updateUserDetails = async (endpoint: string, payload: any) => {
+    try {
+        const response = await putMethod(endpoint, payload);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+//....LeaveHistory
+
+export const HistoryLeave = async (endpoint: any) => {
+    try {
+        const response = await getMethod(endpoint);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+//....leaveTypes
+export const LeaveTypes = async (endpoint: any) => {
+    try {
+        const response = await getMethod(endpoint);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+//.....get login user details
+
+export const UserDetails = async (endpoint: any) => {
+    try {
+        const response = await getMethod(endpoint);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+//...createProfile
+
+export const CreateProfile = async (endpoint: any, payload: any) => {
+    try {
+        const response = await postMethod(endpoint, payload);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+export const Profile = async (endpoint: any) => {
+    try {
+        const response = await getMethod(endpoint);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
 //....Post method
 const postMethod = async (endpoint: any, payload: any) => {
 
@@ -59,25 +123,13 @@ const getMethod = async (endpoint: any) => {
     }
 }
 
-//....LeaveHistory
-
-export const HistoryLeave = async (endpoint: any) => {
+////put method
+const putMethod = async (endpoint: string, payload: any) => {
     try {
-        const response = await getMethod(endpoint);
+        const response = await axios.put(`${BASE_URL}${endpoint}`, payload);
         return response;
     } catch (error) {
-        throw error;
-    }
-}
-
-
-//.....
-
-export const UserDetails = async (endpoint: any) => {
-    try {
-        const response = await getMethod(endpoint);
-        return response;
-    } catch (error) {
+        console.log("Error in putMethod", error);
         throw error;
     }
 }
