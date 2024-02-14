@@ -18,7 +18,7 @@ const initialValues = {
 };
 
 const EmployeeDetailsComponent: React.FC = () => {
-  const [employeeDetails, setEmployeeDetails] = useState<EmployeeDetailsInterface>({ employeeDetails: [], });
+  const [employeeDetails, setEmployeeDetails] = useState<EmployeeDetailsInterface[]>([]);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -41,9 +41,8 @@ const EmployeeDetailsComponent: React.FC = () => {
 
         if (response.ok) {
           const userDetails = await response.json();
-          setEmployeeDetails({
-            employeeDetails: [userDetails],
-          });
+          setEmployeeDetails(userDetails);
+          console.log(userDetails);
         } else if (response.status === 401) {
           // Token expired, try refreshing the token
           const refreshResponse = await fetch('http://localhost:8080/api/refresh', {
@@ -72,11 +71,26 @@ const EmployeeDetailsComponent: React.FC = () => {
 
     fetchUserDetails();
   }, []);
-
+  const openEditPopup = (user: any) => {
+    // setSelectedUser(user);
+    // setModal(true);
+  };
   return (
     <>
       <EmployeeDetailsTemplate
-        employeeDetails={employeeDetails.employeeDetails}
+        employeeDetails={employeeDetails}
+        id={""}
+        userName={""}
+        email={""}
+        password={""}
+        designation={""}
+        department={""}
+        phoneNumber={""}
+        country={""}
+        state={""}
+        city={""}
+        address={""}
+        openEditPopup={openEditPopup}
       />
     </>
   );

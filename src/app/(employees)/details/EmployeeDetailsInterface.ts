@@ -14,4 +14,17 @@ export interface EmployeeDetailsInterface {
     city: string;
     address: string;
   }[];
+  id: Key | null | undefined;
+    userName: string;
+    email: string;
+    password: string;
+    designation: string;
+    department: string;
+    phoneNumber: string;
+    country: string;
+    state: string;
+    city: string;
+    address: string;
+    openEditPopup: (user: any) => void;
+
 }

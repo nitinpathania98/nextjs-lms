@@ -36,37 +36,60 @@ function EditEmployee() {
         e.preventDefault();
         setLoading(true)
         try {
-            const url = `profile/user`;
-            const response: any = await CreateProfile(url, formdata);
-            if (response.status === 201) {
+            let accessToken = localStorage.getItem('accessToken');
+            let refreshToken = localStorage.getItem('refreshToken');
+
+            if (!accessToken || !refreshToken) {
+                console.error('Token not found. Redirect to login page.');
+                // You may want to redirect the user to the login page here
+                return;
+            }
+
+            const url = `http://localhost:8080/api/profile/user`;
+            const response: any = await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formdata)
+            });
+
+            if (response.ok) {
                 setLoading(false);
-                console.log("Data is", response);
+                console.log("Data is", response.json());
                 toast.success("User Data Added successfully");
                 setFormdata(InitialformData);
+            } else if (response.status === 401) {
+                // Token expired, try refreshing the token
+                const refreshResponse = await fetch('http://localhost:8080/api/refresh', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${refreshToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
 
+                if (refreshResponse.ok) {
+                    const { accessToken: newAccessToken } = await refreshResponse.json();
+                    localStorage.setItem('accessToken', newAccessToken);
+                    // Retry registering with the new access token
+                    onRegister(e);
+                } else {
+                    console.error('Failed to refresh token. Redirect to login page.');
+                    // You may want to redirect the user to the login page here
+                }
+            } else {
+                console.error('Failed to register user');
+                // Handle other error cases if necessary
             }
         } catch (error: any) {
             setLoading(false);
-            const response: any = error.response.status;
-            console.log(response, "error status")
-            if (response === 400) {
-                toast.error("Check the validations");
-                setLoading(false);
-                const message: any = error.response.data.errors;
-                console.log(message, "error message")
-                setErrors((prevState: registerErrorType) => {
-                    let updatedErrors: any = { ...prevState };
-                    Object.keys(message).forEach((key) => {
-                        updatedErrors[key] = message[key][0];
-                    });
-                    return updatedErrors;
-                });
-            } else {
-                setLoading(false);
-                toast.error("Something went wrong");
-            }
+            console.error('Error registering user:', error.message);
+            toast.error("Something went wrong");
         }
     };
+
     return (
         <>
             <div className="flex h-screen overflow-hidden ">

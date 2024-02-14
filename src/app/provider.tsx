@@ -1,7 +1,7 @@
 'use client';
 
 // Import necessary dependencies from 'react'
-import { useEffect, useState, ReactNode  } from 'react'
+import { useEffect, useState, ReactNode } from 'react'
 // Import necessary dependencies from '@fluentui/react-components'
 import {
   createDOMRenderer,

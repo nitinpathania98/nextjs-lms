@@ -89,6 +89,15 @@ export const CreateProfile = async (endpoint: any, payload: any) => {
         throw error;
     }
 }
+// Update User UpdateProfile
+export const UpdateProfile = async (endpoint: string, payload: any) => {
+    try {
+        const response = await putMethod(endpoint, payload);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
 export const Profile = async (endpoint: any) => {
     try {
         const response = await getMethod(endpoint);

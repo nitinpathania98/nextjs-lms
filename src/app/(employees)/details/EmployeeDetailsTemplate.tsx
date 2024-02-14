@@ -6,8 +6,10 @@ import { EmployeeDetailsInterface } from './EmployeeDetailsInterface';
 import { MdSecurity } from 'react-icons/md';
 import { Button, Dialog, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Input, Label, makeStyles } from '@fluentui/react-components';
 import toast from 'react-hot-toast';
-import { CreateProfile } from '@/services/api';
+import { CreateProfile, UpdateProfile } from '@/services/api';
+import Link from 'next/link';
 const InitialformData = {
+  id: "",
   userName: "",
   email: "",
   password: "",
@@ -30,43 +32,38 @@ const useStyles = makeStyles({
 });
 const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
   employeeDetails,
-
 }) => {
-  const [formdata, setFormdata] = useState(InitialformData)
-  const user = employeeDetails[0];
-  const styles = useStyles();
+  // const [formdata, setFormdata] = useState(employeeDetails[0] || {});
 
-  //........onchange for data entry on update 
-  const onChangeData = (e: any) => {
-    setFormdata({
-      ...formdata,
-      [e.target.name]: e.target.value
-    })
-  }
+  // const styles = useStyles();
 
-  ///......formsubmit onhandle
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    try {
-      const url = `profile/user`;
-      const response: any = await CreateProfile(url, formdata);
-      if (response.status === 201) {
-        console.log("Data is", response);
-        toast.success("User Data Added successfully");
-        setFormdata(InitialformData);
+  // const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
+  //   setFormdata(prevState => ({
+  //     ...prevState,
+  //     [name]: value
+  //   }));
+  // };
 
-      }
-    } catch (error: any) {
-      const response: any = error.response.status;
-      console.log(response, "error status")
-      if (response === 400) {
-        const message: any = error.response.data.errors;
-        console.log(message, "error message")
-      } else {
-        toast.error("Something went wrong");
-      }
-    }
-  };
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   try {
+  //     const url = `profile/user/${formdata.id}`;
+  //     const response: any = await UpdateProfile(url, formdata);
+  //     if (response.status === 200) {
+  //       console.log("Data is", response);
+  //       toast.success("User Data Updated successfully");
+  //       setFormdata(InitialformData)
+  //     }
+  //   } catch (error: any) {
+  //     if (error.response && error.response.status === 400) {
+  //       const { data } = error.response;
+  //       toast.error(data.message);
+  //     } else {
+  //       toast.error("Something went wrong");
+  //     }
+  //   }
+  // };
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -80,6 +77,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                 <div key={result || index} className="middleSection  h-full  w-11/12 m-auto flex flex-col  p-2 gap-6  ">
                   <div className="firstSection  flex justify-between items-center">
                     <div>
+
                       <h1 >Your Info</h1>
                     </div>
                     <div className="flex flex-row text-justify  gap-1">
@@ -263,82 +261,27 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         <h3>Personal Details</h3>
                       </div>
                       <div className="flex justify-end">
-                        <Dialog modalType="non-modal">
-                          <DialogTrigger disableButtonEnhancement>
-                            <Button>Edit Details</Button>
-                          </DialogTrigger>
-                          <DialogSurface aria-describedby={undefined}>
-                            <form onSubmit={handleSubmit}>
-                              <DialogBody>
-                                <DialogTitle>Personal Details</DialogTitle>
-                                <DialogContent className={styles.content}>
-
-                                  <Label required htmlFor="department">
-                                    Department
-                                  </Label>
-                                  <Input required type="text" id="department"
-                                    name="department"
-                                    value={formdata.department}
-                                    onChange={onChangeData} />
-
-                                  <Label required htmlFor="designation">
-                                    Designation
-                                  </Label>
-                                  <Input required type="text" id="designation"
-                                    name="designation"
-                                    value={formdata.designation}
-                                    onChange={onChangeData}
-                                  />
-
-                                  <Label required htmlFor="country">
-                                    Country
-                                  </Label>
-                                  <Input required type="text" id="country"
-                                    name="country"
-                                    value={formdata.country}
-                                    onChange={onChangeData}
-                                  />
-
-                                  <Label required htmlFor="state">
-                                    State
-                                  </Label>
-                                  <Input required type="text" id="state"
-                                    name="state"
-                                    value={formdata.state}
-                                    onChange={onChangeData}
-                                  />
-
-                                  <Label required htmlFor="city">
-                                    City
-                                  </Label>
-                                  <Input required type="text" id="city"
-                                    name="city"
-                                    value={formdata.city}
-                                    onChange={onChangeData}
-                                  />
-
-                                  <Label required htmlFor="address">
-                                    Address
-                                  </Label>
-                                  <Input required type="text" id="address"
-                                    name="address"
-                                    value={formdata.address}
-                                    onChange={onChangeData}
-                                  />
-
-                                </DialogContent>
-                                <DialogActions>
-                                  <DialogTrigger disableButtonEnhancement>
-                                    <Button appearance="secondary">Close</Button>
-                                  </DialogTrigger>
-                                  <Button type="submit" appearance="primary">
-                                    Submit
-                                  </Button>
-                                </DialogActions>
-                              </DialogBody>
-                            </form>
-                          </DialogSurface>
-                        </Dialog>
+                        <Link
+                          href={{
+                            pathname: '/personalDetails',
+                            query: {
+                              id: result.id,
+                              userName: result.userName,
+                              email: result.email,
+                              password: result.password,
+                              confirmPassword: result.confirmPassword,
+                              designation: result.designation,
+                              department: result.department,
+                              phoneNumber: result.phoneNumber,
+                              country: result.country,
+                              state: result.state,
+                              city: result.city,
+                              address: result.address
+                            } // the data
+                          }}
+                        >
+                          EDIT
+                        </Link>
                       </div>
                     </div>
                     <hr />
