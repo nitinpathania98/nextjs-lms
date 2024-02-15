@@ -24,7 +24,7 @@ const LeaveRequestComponent: React.FC = () => {
     const handleOnSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const url = `leave/submitLeave`;
+            const url = `leaverequest`;
             const response: any = await RequestLeave(url, formdata);
             if (response.status === 201) {
                 toast.success("Leave request submitted successfully")
@@ -38,7 +38,7 @@ const LeaveRequestComponent: React.FC = () => {
     useEffect(() => {
         const fetchLeaveTypes = async () => {
             try {
-                const url = `leaveTypesDetails`;
+                const url = `leavetypes`;
                 const response: any = await LeaveTypes(url);
                 setLeaveTypes(response.data)
             } catch (error) {

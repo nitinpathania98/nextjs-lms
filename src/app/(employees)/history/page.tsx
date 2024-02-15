@@ -18,7 +18,7 @@ const History: React.FC = () => {
     useEffect(() => {
         const fetchLeaveHistory = async () => {
             try {
-                const url = `leave/leaveDetails`;
+                const url = `leaverequest`;
                 const response: any = await HistoryLeave(url);
                 setLeaveHistory(response.data);
                 console.log(response.data);
