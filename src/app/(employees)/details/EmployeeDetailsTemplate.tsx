@@ -1,27 +1,12 @@
 "use client"
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../../components/Navbar';
 import Sidebar from '@/app/components/Sidebar';
 import { EmployeeDetailsInterface } from './EmployeeDetailsInterface';
 import { MdSecurity } from 'react-icons/md';
 import { Button, Dialog, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Input, Label, makeStyles } from '@fluentui/react-components';
-import toast from 'react-hot-toast';
-import { CreateProfile, UpdateProfile } from '@/services/api';
+
 import Link from 'next/link';
-const InitialformData = {
-  id: "",
-  userName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  designation: "",
-  department: "",
-  phoneNumber: "",
-  country: "",
-  state: "",
-  city: "",
-  address: "",
-}
 
 const useStyles = makeStyles({
   content: {
@@ -32,6 +17,7 @@ const useStyles = makeStyles({
 });
 const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
   employeeDetails,
+  openEditPopup,
 }) => {
   // const [formdata, setFormdata] = useState(employeeDetails[0] || {});
 
@@ -73,8 +59,8 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
         <div className="mx-auto max-w-screen-2xl p-4 md:p-2 2xl:p-5">
           <div className='w-auto  '>
             <div className='p-1'>
-              {employeeDetails.length > 0 && employeeDetails.map((result: any, index) => (
-                <div key={result || index} className="middleSection  h-full  w-11/12 m-auto flex flex-col  p-2 gap-6  ">
+              {employeeDetails.length > 0 && employeeDetails.map((user: any, index) => (
+                <div key={user} className="middleSection  h-full  w-11/12 m-auto flex flex-col  p-2 gap-6  ">
                   <div className="firstSection  flex justify-between items-center">
                     <div>
 
@@ -113,7 +99,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                           Full Name
                         </p>
                       </div>
-                      <div><h3>{result.userName}</h3> </div>
+                      <div><h3>{user.userName}</h3> </div>
                       <div className="flex justify-end">
                         <button className="edit" >
                           Edit Name
@@ -160,7 +146,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.country}</h3>
+                        <h3>{user.country}</h3>
                       </div>
                       <div className=" col-span-2">
                         <p className="mt-1 text-sm text-gray-500">
@@ -210,7 +196,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.email}</h3>
+                        <h3>{user.email}</h3>
                       </div>
                       <div className="col-span-2">
                         <p className="mt-1 text-sm text-gray-500">
@@ -227,7 +213,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.phoneNumber}</h3>
+                        <h3>{user.phoneNumber}</h3>
                       </div>
                       <div className=" col-span-2">
                         <p className="mt-1 text-sm text-gray-500">
@@ -244,7 +230,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.password}</h3>
+                        <h3>password</h3>
                       </div>
                       <div className=" col-span-2">
                         <p className="mt-1 text-sm text-gray-500">
@@ -261,27 +247,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         <h3>Personal Details</h3>
                       </div>
                       <div className="flex justify-end">
-                        <Link
-                          href={{
-                            pathname: '/personalDetails',
-                            query: {
-                              id: result.id,
-                              userName: result.userName,
-                              email: result.email,
-                              password: result.password,
-                              confirmPassword: result.confirmPassword,
-                              designation: result.designation,
-                              department: result.department,
-                              phoneNumber: result.phoneNumber,
-                              country: result.country,
-                              state: result.state,
-                              city: result.city,
-                              address: result.address
-                            } // the data
-                          }}
-                        >
-                          EDIT
-                        </Link>
+                        <Button onClick={() => openEditPopup(user)}>Edit Details</Button>
                       </div>
                     </div>
                     <hr />
@@ -293,7 +259,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.department}</h3>
+                        <h3>{user.department}</h3>
                       </div>
                       <div className=" col-span-2">
                         <p className="mt-1 text-sm text-gray-500">
@@ -310,7 +276,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.designation}</h3>
+                        <h3>{user.designation}</h3>
                       </div>
                       <div className=" col-span-2">
                         <p className="mt-1 text-sm text-gray-500">
@@ -327,7 +293,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.country}</h3>
+                        <h3>{user.country}</h3>
                       </div>
                       <div className="col-span-2">
                         <p className="mt-1 text-sm text-gray-500">
@@ -344,7 +310,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.state}</h3>
+                        <h3>{user.state}</h3>
                       </div>
                       <div className=" col-span-2">
                         <p className="mt-1 text-sm text-gray-500">
@@ -361,7 +327,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.city}</h3>
+                        <h3>{user.city}</h3>
                       </div>
                       <div className=" col-span-2">
                         <p className="mt-1 text-sm text-gray-500">
@@ -378,7 +344,7 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
                         </p>
                       </div>
                       <div className="">
-                        <h3>{result.address}</h3>
+                        <h3>{user.address}</h3>
                       </div>
                       <div className=" col-span-2">
                         <p className="mt-1 text-sm text-gray-500">

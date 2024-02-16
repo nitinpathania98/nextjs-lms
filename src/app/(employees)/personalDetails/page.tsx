@@ -1,8 +1,7 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-import { Button, Dialog, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Input, Label, makeStyles } from '@fluentui/react-components';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useSearchParams } from 'next/navigation';
+import PersonalDetails from './PersonalDetails';
+import { PersonalDetailsInterface } from './PersonalDetailsInterface';
 
 const initialValues = {
     userName: "",
@@ -16,49 +15,51 @@ const initialValues = {
     city: "",
     address: "",
     id: "",
+    UserId: "",
 };
 
-const useStyles = makeStyles({
-    content: {
-        display: "flex",
-        flexDirection: "column",
-        rowGap: "10px",
-    },
-});
-const PersonalDetails: React.FC<{ initialValues: any }> = ({ initialValues }) => {
-    const searchParams = useSearchParams();
-    const userName = searchParams.get('userName') || '';
-    const email = searchParams.get('email') || '';
-    const password = searchParams.get('password') || '';
-    const designation = searchParams.get('designation') || '';
-    const department = searchParams.get('department') || '';
-    const phoneNumber = searchParams.get('phoneNumber') || '';
-    const country = searchParams.get('country') || '';
-    const state = searchParams.get('state') || '';
-    const city = searchParams.get('city') || '';
-    const address = searchParams.get('address') || '';
-    const id = searchParams.get('id') || '';
-    const [formdata, setFormData] = useState({
-        userName,
-        email,
-        password,
-        designation,
-        department,
-        phoneNumber,
-        country,
-        state,
-        city,
-        address,
-        id
-    });
-    console.log([formdata]);
-    const styles = useStyles();
+interface PersonalDetailsComponentProps extends PersonalDetailsInterface {
+    isModal: boolean;
+    handleClose: () => void;
+    user: any;
+    formData: any;
+    setFormData: React.Dispatch<React.SetStateAction<any>>;
+    onUpdate: () => void;
+}
 
-    const onChangeData = (e: any) => {
-        setFormData({
+const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isModal, handleClose, user, formData, setFormData, onUpdate }) => {
+    const [formdata, setFormdata] = useState(initialValues);
+
+
+    useEffect(() => {
+        if (user) {
+            const { userName, email, password, designation, department, phoneNumber, country, state, city, address, id, UserId } = user;
+            setFormdata({
+                userName: userName || '',
+                email: email || '',
+                password: password || '',
+                designation: designation || '',
+                department: department || '',
+                phoneNumber: phoneNumber || '',
+                country: country || '',
+                state: state || '',
+                city: city || '',
+                address: address || '',
+                id: id || '',
+                UserId: UserId || '',
+            });
+        }
+        else {
+            // Reset formdata to initial values if user data is not available
+            setFormdata(initialValues);
+        }
+    }, [user]);
+
+    const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormdata({
             ...formdata,
             [e.target.name]: e.target.value
-        })
+        });
     };
 
     const handleSubmit = async (e: any) => {
@@ -91,8 +92,9 @@ const PersonalDetails: React.FC<{ initialValues: any }> = ({ initialValues }) =>
             });
 
             if (response.ok) {
-                console.log("Data is", response.json());
                 toast.success("Data Updated successfully");
+                onUpdate();
+                handleClose();
             } else if (response.status === 404) {
                 // If the user profile does not exist, create a new one
                 const createResponse = await fetch('http://localhost:8080/api/profile/user', {
@@ -105,8 +107,9 @@ const PersonalDetails: React.FC<{ initialValues: any }> = ({ initialValues }) =>
                 });
 
                 if (createResponse.ok) {
-                    console.log("Data is", createResponse.json());
-                    toast.success("Data Updated successfully");
+                    toast.success("Data Added successfully");
+                    onUpdate();
+                    handleClose();
                 } else {
                     console.error('Failed to create user');
                 }
@@ -138,84 +141,27 @@ const PersonalDetails: React.FC<{ initialValues: any }> = ({ initialValues }) =>
             toast.error("Something went wrong");
         }
     };
+    const handleClosePopup = () => {
+        setFormdata(formdata);
+        handleClose();
+    };
+
+    if (!user) {
+        return null;
+    }
 
     return (
-        <Dialog modalType="non-modal">
-            <DialogTrigger disableButtonEnhancement>
-                <Button>Edit Details</Button>
-            </DialogTrigger>
-            <DialogSurface aria-describedby={undefined}>
-                <form onSubmit={handleSubmit}>
-                    <DialogBody>
-                        <DialogTitle>Personal Details</DialogTitle>
-                        <DialogContent className={styles.content}>
+        <PersonalDetails
+            handleSubmit={handleSubmit}
+            onChangeData={onChangeData}
+            handleClose={handleClosePopup}
+            formdata={formdata}
+            isModal={isModal}
+            user={user}
+            formData={formData}
+            setFormData={setFormData}
+        />
+    );
+};
 
-                            <Label required htmlFor="department">
-                                Department
-                            </Label>
-                            <Input required type="text" id="department"
-                                name="department"
-                                value={formdata.department}
-                                onChange={onChangeData} />
-
-                            <Label required htmlFor="designation">
-                                Designation
-                            </Label>
-                            <Input required type="text" id="designation"
-                                name="designation"
-                                value={formdata.designation}
-                                onChange={onChangeData}
-                            />
-
-                            <Label required htmlFor="country">
-                                Country
-                            </Label>
-                            <Input required type="text" id="country"
-                                name="country"
-                                value={formdata.country}
-                                onChange={onChangeData}
-                            />
-
-                            <Label required htmlFor="state">
-                                State
-                            </Label>
-                            <Input required type="text" id="state"
-                                name="state"
-                                value={formdata.state}
-                                onChange={onChangeData}
-                            />
-
-                            <Label required htmlFor="city">
-                                City
-                            </Label>
-                            <Input required type="text" id="city"
-                                name="city"
-                                value={formdata.city}
-                                onChange={onChangeData}
-                            />
-
-                            <Label required htmlFor="address">
-                                Address
-                            </Label>
-                            <Input required type="text" id="address"
-                                name="address"
-                                value={formdata.address}
-                                onChange={onChangeData}
-                            />
-
-                        </DialogContent>
-                        <DialogActions>
-                            <DialogTrigger disableButtonEnhancement>
-                                <Button appearance="secondary">Close</Button>
-                            </DialogTrigger>
-                            <Button type="submit" appearance="primary">
-                                Submit
-                            </Button>
-                        </DialogActions>
-                    </DialogBody>
-                </form>
-            </DialogSurface>
-        </Dialog>
-    )
-}
-export default PersonalDetails;
+export default PersonalDetailsComponent;
