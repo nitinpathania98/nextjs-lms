@@ -52,6 +52,25 @@ function LeaveApplication() {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+                                                <button className="mx-1 bg-themeColor px-4 py-2 text-white rounded">
+                                                    <span className="hidden md:block">Approve</span>
+                                                    <span className="block md:hidden">
+                                                        <svg stroke="currentColor" fill="none" strokeWidth={2} viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                            <polyline points="20 6 9 17 4 12" />
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                                <button className="mx-1 bg-redColor px-4 py-2 text-white rounded">
+                                                    <span className="hidden md:block">Reject</span>
+                                                    <span className="block md:hidden">
+                                                        <svg stroke="currentColor" fill="none" strokeWidth={2} viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                            <line x1={18} y1={6} x2={6} y2={18} />
+                                                            <line x1={6} y1={6} x2={18} y2={18} />
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="cursor-pointer relative mx-2 my-2 rounded-lg p-3 border border-gray-300 bg-blue-100 ">
