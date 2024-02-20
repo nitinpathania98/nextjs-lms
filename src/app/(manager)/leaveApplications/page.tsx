@@ -31,7 +31,7 @@ function LeaveApplication() {
                                                         Pending</div>
                                                 </div>
                                                 <div className="text-xs font-light my-2">
-                                                    Family vacation
+                                                    Family vacations
                                                 </div>
                                                 <div className="flex justify-between">
                                                     <div className="mb-2">
