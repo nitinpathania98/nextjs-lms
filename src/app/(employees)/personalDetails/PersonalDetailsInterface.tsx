@@ -15,7 +15,7 @@ export interface PersonalDetailsInterface {
         city: string;
         address: string;
         id: string;
-        UserId: string;
+        UserId: any;
     };
     isModal: boolean;
     handleClose: () => void;
