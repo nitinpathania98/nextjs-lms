@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { Button, Dialog, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Input, Label, makeStyles } from '@fluentui/react-components';
+import { Button, Dialog, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Input, Label, Select, makeStyles } from '@fluentui/react-components';
 import { PersonalDetailsInterface } from './PersonalDetailsInterface';
 import UseDialog from '@/components/common/Dialog';
 
@@ -16,7 +16,10 @@ const PersonalDetails: React.FC<PersonalDetailsInterface> = ({
     onChangeData,
     formdata,
     isModal,
-    handleClose
+    handleClose,
+    country,
+    state=[],
+    city=[],
 }) => {
     const styles = useStyles();
     return (
@@ -46,30 +49,60 @@ const PersonalDetails: React.FC<PersonalDetailsInterface> = ({
                         <Label required htmlFor="country">
                             Country
                         </Label>
-                        <Input required type="text" id="country"
-                            name="country"
-                            value={formdata.country}
+
+                        <Select
+                            id="country"
+                            required
+                            name='country'
                             onChange={onChangeData}
-                        />
+                            value={formdata.country}
+                            className="cursor-pointer bg-cardColor text-textColor text-sm rounded-lg focus:outline-none block w-full"
+                        >
+                            <option value="" disabled>Select Leave Type</option>
+                            {country.map((country: any) => (
+                                <option key={country._id} value={country.country_name}>
+                                    {country.country_name}
+                                </option>
+                            ))}
+                        </Select>
 
                         <Label required htmlFor="state">
                             State
                         </Label>
-                        <Input required type="text" id="state"
-                            name="state"
-                            value={formdata.state}
+                        <Select
+                            id="state"
+                            required
+                            name='state'
                             onChange={onChangeData}
-                        />
+                            value={formdata.state}
+                            className="cursor-pointer bg-cardColor text-textColor text-sm rounded-lg focus:outline-none block w-full"
+                        >
+                            <option value="" disabled>Select State</option>
+                            {state.map((state: any) => (
+                                <option key={state._id} value={state.state_name}>
+                                    {state.state_name}
+                                </option>
+                            ))}
+                        </Select>
 
                         <Label required htmlFor="city">
                             City
                         </Label>
-                        <Input required type="text" id="city"
-                            name="city"
-                            value={formdata.city}
+                        <Select
+                            id="city"
+                            required
+                            name='city'
                             onChange={onChangeData}
-                        />
-
+                            value={formdata.city}
+                            className="cursor-pointer bg-cardColor text-textColor text-sm rounded-lg focus:outline-none block w-full"
+                        >
+                            <option value="" disabled>Select City</option>
+                            {city.map((city: any) => (
+                                <option key={city._id} value={city.city_name}>
+                                    {city.city_name}
+                                </option>
+                            ))}
+                        </Select>
                         <Label required htmlFor="address">
                             Address
                         </Label>

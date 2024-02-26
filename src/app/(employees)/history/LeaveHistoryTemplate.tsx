@@ -8,8 +8,8 @@ const LeaveHistoryTemplate: React.FC<LeaveHistoryInterface> = ({ leaveHistory })
     const columns: IColumn[] = [
         { key: 'column1', name: 'Leave Type', fieldName: 'leaveType', minWidth: 100, maxWidth: 200, isResizable: true },
         { key: 'column2', name: 'Start Date', fieldName: 'startDate', minWidth: 100, maxWidth: 200, isResizable: true },
-        { key: 'column3', name: 'Duration', fieldName: 'duration', minWidth: 100, maxWidth: 200, isResizable: true },
-        { key: 'column4', name: 'Purpose', fieldName: 'purpose', minWidth: 100, maxWidth: 200, isResizable: true },
+        { key: 'column3', name: 'EndDate', fieldName: 'endDate', minWidth: 100, maxWidth: 200, isResizable: true },
+        { key: 'column4', name: 'Reason', fieldName: 'reason', minWidth: 100, maxWidth: 200, isResizable: true },
         { key: 'column5', name: 'Status', fieldName: 'status', minWidth: 100, maxWidth: 200, isResizable: true },
     ];
 

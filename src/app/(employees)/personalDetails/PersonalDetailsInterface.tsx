@@ -19,7 +19,10 @@ export interface PersonalDetailsInterface {
     };
     isModal: boolean;
     handleClose: () => void;
-    user: any; 
-    formData: any; 
-    setFormData: Dispatch<SetStateAction<any>>; 
+    user: any;
+    formData: any;
+    setFormData: Dispatch<SetStateAction<any>>;
+    country: any;
+    state: any[];
+    city: any[];
 }

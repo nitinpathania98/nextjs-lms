@@ -130,7 +130,7 @@ const EmployeeDetailsComponent: React.FC = () => {
         onUpdate={handleEditUserUpdate}
         onChangeData={function (e: any): void {
           throw new Error("Function not implemented.");
-        }} formdata={{
+        } } formdata={{
           userName: "",
           email: "",
           password: "",
@@ -143,8 +143,7 @@ const EmployeeDetailsComponent: React.FC = () => {
           address: "",
           id: "",
           UserId: ""
-        }}
-      />
+        }} country={undefined} state={[]} city={[]}      />
 
       <EmployeeDetailsTemplate
         employeeDetails={employeeDetails}

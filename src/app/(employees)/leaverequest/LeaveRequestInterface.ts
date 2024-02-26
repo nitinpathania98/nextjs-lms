@@ -6,8 +6,7 @@ export interface LeaveRequestInterface {
     formdata: {
         leaveType: string;
         startDate: string;
-        duration: string;
-        purpose: string;
-    };
+        endDate: string;
+        reason: string;    };
     leaveTypes: { leave_type_id: number; leave_type_name: string }[];
 }

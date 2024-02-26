@@ -31,7 +31,7 @@ const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
                                     name='leaveType'
                                     onChange={dataChange}
                                     value={formdata.leaveType}
-                                    className="cursor-pointer bg-cardColor border border-card text-textColor text-sm rounded-lg focus:outline-none block w-full p-2.5"
+                                    className="cursor-pointer bg-cardColor text-textColor text-sm rounded-lg focus:outline-none block w-full"
                                 >
                                     <option value="" disabled>Select Leave Type</option>
                                     {leaveTypes.map((leaveType) => (
@@ -51,22 +51,21 @@ const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
                                         required
                                     />
                                     <TextField
-                                        type="text"
-                                        id="duration"
-                                        name="duration"
-                                        label="Duration"
-                                        value={formdata.duration}
+                                        type="date"
+                                        id="endDate"
+                                        name="endDate"
+                                        label="End Date"
+                                        value={formdata.endDate}
                                         onChange={dataChange}
                                         required
-                                        placeholder="10 days"
                                     />
                                 </Stack>
                                 <TextField
                                     type="text"
-                                    id="purpose"
-                                    name="purpose"
-                                    label="Leave Purpose"
-                                    value={formdata.purpose}
+                                    id="reason"
+                                    name="reason"
+                                    label="Leave reason"
+                                    value={formdata.reason}
                                     onChange={dataChange}
                                     required
                                     placeholder="Give reason for leave"

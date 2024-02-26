@@ -7,8 +7,8 @@ import { LeaveHistoryInterface } from './LeaveHistoryInterface';
 const initialValues = {
     leaveType: '',
     startDate: '',
-    duration: '',
-    purpose: '',
+    endDate: '',
+    reason: '',
     status: '',
 }
 const History: React.FC = () => {
@@ -18,12 +18,45 @@ const History: React.FC = () => {
     useEffect(() => {
         const fetchLeaveHistory = async () => {
             try {
-                const url = `leaverequest`;
-                const response: any = await HistoryLeave(url);
-                setLeaveHistory(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error fetching leave history:', error);
+                let accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    console.error('Token not found. Redirect to login page.');
+                    return;
+                }
+
+                const response = await fetch('http://localhost:8080/api/users/user/details', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+                if (response.ok) {
+                    const userDetails = await response.json();
+                    setLeaveHistory(userDetails);
+                    console.log("userDEtails", userDetails);
+                } else if (response.status === 401) {
+                    // Token expired, try refreshing the token
+                    const refreshResponse = await fetch('http://localhost:8080/api/refresh', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                    if (refreshResponse.ok) {
+                        const { accessToken: newAccessToken } = await refreshResponse.json();
+                        localStorage.setItem('token', newAccessToken);
+                        // Retry fetching user details with the new access token
+                        fetchLeaveHistory();
+                    } else {
+                        console.error('Failed to refresh token. Redirect to login page.');
+                    }
+                } else {
+                    console.error('Failed to fetch user details');
+                }
+            } catch (error: any) {
+                console.error('Error fetching user details:', error.message);
             }
         };
         fetchLeaveHistory();
@@ -33,8 +66,8 @@ const History: React.FC = () => {
             leaveHistory={leaveHistory}
             leaveType={''}
             startDate={''}
-            duration={''}
-            purpose={''}
+            endDate={''}
+            reason={''}
             status={''}
         />
     );

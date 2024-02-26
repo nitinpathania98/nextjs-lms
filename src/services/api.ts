@@ -33,6 +33,24 @@ export const RequestLeave = async (endpoint: any, payload: any) => {
     }
 }
 
+//.....Approve request
+export const ApproveLeave = async (endpoint: any, payload: any) => {
+    try {
+        const response = await postMethod(endpoint, payload);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+//..Reject Request
+export const RejectLeave = async (endpoint: any, payload: any) => {
+    try {
+        const response = await postMethod(endpoint, payload);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
 
 
 // Update User Details
@@ -106,6 +124,7 @@ export const Profile = async (endpoint: any) => {
         throw error;
     }
 }
+
 //....Post method
 const postMethod = async (endpoint: any, payload: any) => {
 

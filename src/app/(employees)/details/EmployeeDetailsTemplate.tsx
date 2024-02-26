@@ -19,38 +19,6 @@ const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
   employeeDetails,
   openEditPopup,
 }) => {
-  // const [formdata, setFormdata] = useState(employeeDetails[0] || {});
-
-  // const styles = useStyles();
-
-  // const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setFormdata(prevState => ({
-  //     ...prevState,
-  //     [name]: value
-  //   }));
-  // };
-
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   try {
-  //     const url = `profile/user/${formdata.id}`;
-  //     const response: any = await UpdateProfile(url, formdata);
-  //     if (response.status === 200) {
-  //       console.log("Data is", response);
-  //       toast.success("User Data Updated successfully");
-  //       setFormdata(InitialformData)
-  //     }
-  //   } catch (error: any) {
-  //     if (error.response && error.response.status === 400) {
-  //       const { data } = error.response;
-  //       toast.error(data.message);
-  //     } else {
-  //       toast.error("Something went wrong");
-  //     }
-  //   }
-  // };
-
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />

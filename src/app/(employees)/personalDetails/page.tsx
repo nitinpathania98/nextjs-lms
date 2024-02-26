@@ -30,9 +30,37 @@ interface PersonalDetailsComponentProps extends PersonalDetailsInterface {
 
 const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isModal, handleClose, user, formData, setFormData, onUpdate }) => {
     const [formdata, setFormdata] = useState(initialValues);
+    const [country, setCountry] = useState("");
+    const [state, setState] = useState<any[]>([]); // Initialize as empty array
+    const [city, setCity] = useState<any[]>([]);
 
 
     useEffect(() => {
+
+        const fetchCountry = async () => {
+            try {
+                const response = await fetch('https://www.universal-tutorial.com/api/countries/', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDg3NzM5MzV9.fvctiLYiUsrLJIx-d1hAO9F7w1vJ6j7r16eeb0Ki0BM`,
+                        'Accept': 'application/json',
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setCountry(data);
+            } catch (error) {
+                console.error('Error fetching Country:', error);
+            }
+        };
+
+        fetchCountry();
+
+
+
+
         if (user) {
             const { userName, email, password, designation, department, phoneNumber, country, state, city, address, id, UserId } = user;
             setFormdata({
@@ -54,7 +82,59 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
             // Reset formdata to initial values if user data is not available
             setFormdata(initialValues);
         }
-    }, [user]);
+    }, [user],);
+
+    //state
+    useEffect(() => {
+        const fetchState = async () => {
+            try {
+                const response = await fetch(`https://www.universal-tutorial.com/api/states/${formdata.country}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDg3NzM5MzV9.fvctiLYiUsrLJIx-d1hAO9F7w1vJ6j7r16eeb0Ki0BM`,
+                        'Accept': 'application/json',
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setState(data);
+            } catch (error) {
+                console.error('Error fetching States:', error);
+            }
+        };
+
+        if (formdata.country) {
+            fetchState();
+        }
+    }, [formdata.country])
+
+    useEffect(() => {
+        const fetchCity = async () => {
+            try {
+                const response = await fetch(`https://www.universal-tutorial.com/api/cities/${formdata.state}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDg3NzM5MzV9.fvctiLYiUsrLJIx-d1hAO9F7w1vJ6j7r16eeb0Ki0BM`,
+                        'Accept': 'application/json',
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                console.log("state", data);
+                setCity(data);
+            } catch (error) {
+                console.error('Error fetching Cities:', error);
+            }
+        };
+
+        if (formdata.state) {
+            fetchCity();
+        }
+    }, [formdata.state]);
 
     const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormdata({
@@ -151,6 +231,7 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
         return null;
     }
 
+
     return (
         <PersonalDetails
             handleSubmit={handleSubmit}
@@ -161,8 +242,12 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
             user={user}
             formData={formData}
             setFormData={setFormData}
+            country={country}
+            state={state}
+            city={city}
         />
     );
 };
 
 export default PersonalDetailsComponent;
+

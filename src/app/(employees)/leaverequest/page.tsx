@@ -7,12 +7,64 @@ import LeaveRequestTemplate from './LeaveRequestTemplate';
 const initialValues = {
     leaveType: '',
     startDate: '',
-    duration: '',
-    purpose: ''
+    endDate: '',
+    reason: ''
 }
 const LeaveRequestComponent: React.FC = () => {
     const [formdata, setFormdata] = useState(initialValues);
     const [leaveTypes, setLeaveTypes] = useState<{ leave_type_id: number; leave_type_name: string }[]>([]);
+    const [UserId, setUserId] = useState<number | null>(null);
+
+    useEffect(() => {
+        const fetchLeaveTypes = async () => {
+            try {
+                const url = `leavetypes`;
+                const response: any = await LeaveTypes(url);
+                console.log(response);
+                setLeaveTypes(response.data)
+            } catch (error) {
+                console.error('Error fetching leaveTypes:', error);
+            }
+        };
+
+        fetchLeaveTypes();
+        const fetchUserId = async () => {
+            try {
+                // Replace this with your actual authentication logic
+                const loggedInUserId = await fetchLoggedInUserId();
+                setUserId(loggedInUserId);
+            } catch (error) {
+                console.error('Error fetching user ID:', error);
+            }
+        };
+
+        fetchUserId();
+    }, []);
+    const fetchLoggedInUserId = async () => {
+        try {
+
+            const accessToken = localStorage.getItem('accessToken');
+            const response = await fetch('http://localhost:8080/api/users/user/details', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const user = await response.json();
+            if (user.length > 0) {
+                return user[0].UserId; // Replace 'UserId' with the actual property name
+            } else {
+                // Handle the case where no user is found
+                throw new Error('No user found');
+            }
+        } catch (error) {
+            console.error('Error fetching user ID:', error);
+            throw error;
+        }
+    };
+
 
     const dataChange = (e: any) => {
         setFormdata({
@@ -24,8 +76,12 @@ const LeaveRequestComponent: React.FC = () => {
     const handleOnSubmit = async (e: any) => {
         e.preventDefault();
         try {
-            const url = `leaverequest`;
-            const response: any = await RequestLeave(url, formdata);
+            const requestData = {
+                ...formdata,
+                UserId: UserId 
+            };
+            const url = `leave-request`;
+            const response: any = await RequestLeave(url, requestData);
             if (response.status === 201) {
                 toast.success("Leave request submitted successfully")
                 setFormdata(initialValues);
@@ -35,21 +91,6 @@ const LeaveRequestComponent: React.FC = () => {
             toast.error("Something went wrong");
         }
     };
-    useEffect(() => {
-        const fetchLeaveTypes = async () => {
-            try {
-                const url = `leavetypes`;
-                const response: any = await LeaveTypes(url);
-                setLeaveTypes(response.data)
-            } catch (error) {
-                console.error('Error fetching leaveTypes:', error);
-            }
-        };
-
-        fetchLeaveTypes();
-    }, []);
-
-
     return (
         <LeaveRequestTemplate
             dataChange={dataChange}
