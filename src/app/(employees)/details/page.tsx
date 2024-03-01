@@ -46,7 +46,6 @@ const EmployeeDetailsComponent: React.FC = () => {
       if (response.ok) {
         const userDetails = await response.json();
         setEmployeeDetails(userDetails);
-        console.log("userDEtails", userDetails);
       } else if (response.status === 401) {
         // Token expired, try refreshing the token
         const refreshResponse = await fetch('http://localhost:8080/api/refresh', {
@@ -79,7 +78,6 @@ const EmployeeDetailsComponent: React.FC = () => {
   }, [isModal]);
 
   const openEditPopup = (user: any) => {
-    console.log("Selected User:", user);
     setSelectedUser(user);
     setFormData(user);
     setModal(true);
@@ -118,7 +116,7 @@ const EmployeeDetailsComponent: React.FC = () => {
   const handleEditUserUpdate = () => {
     setModal(false);
   };
-  return (
+  return ( 
     <>
       <PersonalDetailsComponent
         isModal={isModal}
@@ -130,7 +128,8 @@ const EmployeeDetailsComponent: React.FC = () => {
         onUpdate={handleEditUserUpdate}
         onChangeData={function (e: any): void {
           throw new Error("Function not implemented.");
-        } } formdata={{
+        }}
+        formdata={{
           userName: "",
           email: "",
           password: "",
@@ -143,7 +142,7 @@ const EmployeeDetailsComponent: React.FC = () => {
           address: "",
           id: "",
           UserId: ""
-        }} country={undefined} state={[]} city={[]}      />
+        }} country={undefined} state={[]} city={[]} />
 
       <EmployeeDetailsTemplate
         employeeDetails={employeeDetails}

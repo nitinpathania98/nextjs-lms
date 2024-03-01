@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { HistoryLeave } from '@/services/api';
 import LeaveHistoryTemplate from './LeaveHistoryTemplate';
 import { LeaveHistoryInterface } from './LeaveHistoryInterface';
+import EditRequestComponent from '../editRequest/page';
 
 const initialValues = {
     leaveType: '',
@@ -10,10 +10,13 @@ const initialValues = {
     endDate: '',
     reason: '',
     status: '',
-}
-const History: React.FC = () => {
+};
 
+const History: React.FC = () => {
     const [leaveHistory, setLeaveHistory] = useState<LeaveHistoryInterface[]>([]);
+    const [selectedItem, setSelectedItem] = useState<any>(null);
+    const [isModal, setModal] = useState<boolean>(false);
+    const [formData, setFormData] = useState<LeaveHistoryInterface | null>(null);
 
     useEffect(() => {
         const fetchLeaveHistory = async () => {
@@ -31,10 +34,11 @@ const History: React.FC = () => {
                         'Content-Type': 'application/json',
                     },
                 });
+
                 if (response.ok) {
                     const userDetails = await response.json();
-                    setLeaveHistory(userDetails);
-                    console.log("userDEtails", userDetails);
+                    const userLeaveRequests = userDetails[0].leaveRequests;
+                    setLeaveHistory(userLeaveRequests);
                 } else if (response.status === 401) {
                     // Token expired, try refreshing the token
                     const refreshResponse = await fetch('http://localhost:8080/api/refresh', {
@@ -46,7 +50,7 @@ const History: React.FC = () => {
 
                     if (refreshResponse.ok) {
                         const { accessToken: newAccessToken } = await refreshResponse.json();
-                        localStorage.setItem('token', newAccessToken);
+                        localStorage.setItem('accessToken', newAccessToken);
                         // Retry fetching user details with the new access token
                         fetchLeaveHistory();
                     } else {
@@ -61,15 +65,108 @@ const History: React.FC = () => {
         };
         fetchLeaveHistory();
     }, []);
+
+    const openEditPopup = (item: LeaveHistoryInterface) => {
+        setSelectedItem(item);
+        setFormData(item);
+        setModal(true);
+    };
+
+    const handleClosePopup = () => {
+        setModal(false);
+    };
+
+    const handleFormSubmit = async (editedItem: any) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/leave-request/${editedItem.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editedItem),
+            });
+            if (response.ok) {
+                const updatedLeaveHistory: any = leaveHistory.map(item => {
+                    if (item.id === editedItem.id) {
+                        return editedItem;
+                    }
+                    return item;
+                });
+                setLeaveHistory(updatedLeaveHistory);
+                setModal(false);
+                console.log('Edit successful');
+            } else {
+                console.error('Edit failed:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error editing item:', error);
+        }
+    };
+
+    const handleDelete = async (deletedItemId: any) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/leave-request/${deletedItemId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                },
+            });
+            if (response.ok) {
+                const updatedLeaveHistory = leaveHistory.filter(item => item.id !== deletedItemId);
+                setLeaveHistory(updatedLeaveHistory);
+                console.log('Delete successful');
+            } else {
+                console.error('Delete failed:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error deleting item:', error);
+        }
+    };
+
+    const handleEditItemUpdate = (updatedItem: LeaveHistoryInterface) => {
+        // Update the item in leaveHistory array
+        const updatedLeaveHistory = leaveHistory.map(item =>
+            item.id === updatedItem.id ? updatedItem : item
+        );
+        setLeaveHistory(updatedLeaveHistory);
+        setModal(false);
+    };
     return (
-        <LeaveHistoryTemplate
-            leaveHistory={leaveHistory}
-            leaveType={''}
-            startDate={''}
-            endDate={''}
-            reason={''}
-            status={''}
-        />
+        <>
+            <EditRequestComponent
+                isModal={isModal}
+                item={selectedItem}
+                onUpdate={handleEditItemUpdate}
+                handleSubmit={handleFormSubmit}
+                onChangeData={function (e: any): void {
+                    throw new Error('Function not implemented.');
+                }}
+                formdata={{
+                    leaveType: '',
+                    startDate: '',
+                    endDate: '',
+                    reason: '',
+                    id: '',
+                    status:'',
+                    UserId: undefined
+                }}
+                handleClose={handleClosePopup}
+                formData={formData}
+                setFormData={setFormData}
+                leaveTypes={[]} />
+            <LeaveHistoryTemplate
+                leaveHistory={leaveHistory}
+                openEditPopup={openEditPopup}
+                onDelete={handleDelete}
+                leaveType={''}
+                startDate={''}
+                endDate={''}
+                reason={''}
+                status={''}
+                id={''}
+            />
+        </>
     );
 };
 

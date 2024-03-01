@@ -45,7 +45,6 @@ const LeaveApplications: React.FC = () => {
         try {
             // Replace this with your actual authentication logic
             const loggedInApproverId = await ApproverId();
-            console.log(loggedInApproverId);
             setApproverId(loggedInApproverId);
         } catch (error) {
             console.error('Error fetching user ID:', error);
@@ -57,7 +56,7 @@ const LeaveApplications: React.FC = () => {
             const url = `leave-requests`;
             const response: any = await HistoryLeave(url);
             setLeaveHistory(response.data);
-            console.log(response.data);
+         
         } catch (error) {
             console.error('Error fetching leave history:', error);
         }

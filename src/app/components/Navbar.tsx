@@ -2,6 +2,7 @@ import { Image } from '@fluentui/react';
 import React from 'react';
 import SignoutButton from '@/components/SignOutButton';
 import Link from 'next/link';
+import DropdownNotification from '../../components/DropdownNotification';
 
 export default function Navbar() {
     return (
@@ -20,9 +21,10 @@ export default function Navbar() {
                                 alt="logo"
                             />
                         </div>
-                        <div className="hidden mr-4 lg:block">
-                            <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+                        <div className="flex items-center gap-3 2xsm:gap-7">
+                            <ul className="flex items-center gap-2 2xsm:gap-4">
                                 {/* Place any additional menu items here */}
+                                <DropdownNotification />
                             </ul>
                         </div>
                         <div className="flex items-center gap-x-1">

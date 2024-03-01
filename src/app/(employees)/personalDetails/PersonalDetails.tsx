@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { Button, Dialog, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Input, Label, Select, makeStyles } from '@fluentui/react-components';
+import { Button, Dialog, DialogActions, DialogBody, DialogContent, DialogTitle, DialogTrigger, Input, Label, Select, makeStyles } from '@fluentui/react-components';
 import { PersonalDetailsInterface } from './PersonalDetailsInterface';
 import UseDialog from '@/components/common/Dialog';
 

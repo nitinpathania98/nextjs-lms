@@ -3,7 +3,7 @@ import { Stack, Text, ComboBox, TextField, PrimaryButton } from '@fluentui/react
 import Navbar from '../../components/Navbar';
 import Sidebar from '@/app/components/Sidebar';
 import { LeaveRequestInterface } from './LeaveRequestInterface';
-import { Select } from '@fluentui/react-components';
+import { Field, Select, Textarea , Button} from '@fluentui/react-components';
 
 
 const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
@@ -60,17 +60,20 @@ const LeaveRequestTemplate: React.FC<LeaveRequestInterface> = ({
                                         required
                                     />
                                 </Stack>
-                                <TextField
-                                    type="text"
-                                    id="reason"
-                                    name="reason"
-                                    label="Leave reason"
-                                    value={formdata.reason}
-                                    onChange={dataChange}
-                                    required
-                                    placeholder="Give reason for leave"
-                                />
-                                <PrimaryButton type='submit' >Submit Leave Request</PrimaryButton>
+
+                                <Field label="Leave reason">
+                                    <Textarea
+                                        appearance="outline"
+                                        placeholder="type here..."
+                                        resize="both"
+                                        id="reason"
+                                        name="reason"
+                                        value={formdata.reason}
+                                        onChange={dataChange}
+                                        required
+                                    />
+                                </Field>
+                                <Button type='submit' appearance="primary" >Submit Leave Request</Button>
                             </Stack>
                         </form>
                     </Stack>

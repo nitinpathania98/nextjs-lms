@@ -42,7 +42,7 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
                 const response = await fetch('https://www.universal-tutorial.com/api/countries/', {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDg3NzM5MzV9.fvctiLYiUsrLJIx-d1hAO9F7w1vJ6j7r16eeb0Ki0BM`,
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDkyOTcxMjd9.PDvGSX0hNSpkzlOATL2tiafzENdzzmK74m2LItNPbUM`,
                         'Accept': 'application/json',
                     },
                 });
@@ -91,7 +91,7 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
                 const response = await fetch(`https://www.universal-tutorial.com/api/states/${formdata.country}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDg3NzM5MzV9.fvctiLYiUsrLJIx-d1hAO9F7w1vJ6j7r16eeb0Ki0BM`,
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDkyOTcxMjd9.PDvGSX0hNSpkzlOATL2tiafzENdzzmK74m2LItNPbUM`,
                         'Accept': 'application/json',
                     },
                 });
@@ -116,7 +116,7 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
                 const response = await fetch(`https://www.universal-tutorial.com/api/cities/${formdata.state}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDg3NzM5MzV9.fvctiLYiUsrLJIx-d1hAO9F7w1vJ6j7r16eeb0Ki0BM`,
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDkyOTcxMjd9.PDvGSX0hNSpkzlOATL2tiafzENdzzmK74m2LItNPbUM`,
                         'Accept': 'application/json',
                     },
                 });
@@ -124,7 +124,6 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                console.log("state", data);
                 setCity(data);
             } catch (error) {
                 console.error('Error fetching Cities:', error);

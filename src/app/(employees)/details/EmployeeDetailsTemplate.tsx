@@ -4,17 +4,8 @@ import Navbar from '../../components/Navbar';
 import Sidebar from '@/app/components/Sidebar';
 import { EmployeeDetailsInterface } from './EmployeeDetailsInterface';
 import { MdSecurity } from 'react-icons/md';
-import { Button, Dialog, DialogActions, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, Input, Label, makeStyles } from '@fluentui/react-components';
+import { Button} from '@fluentui/react-components';
 
-import Link from 'next/link';
-
-const useStyles = makeStyles({
-  content: {
-    display: "flex",
-    flexDirection: "column",
-    rowGap: "10px",
-  },
-});
 const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
   employeeDetails,
   openEditPopup,
