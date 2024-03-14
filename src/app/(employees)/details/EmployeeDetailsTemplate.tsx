@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar';
 import Sidebar from '@/app/components/Sidebar';
 import { EmployeeDetailsInterface } from './EmployeeDetailsInterface';
 import { MdSecurity } from 'react-icons/md';
-import { Button} from '@fluentui/react-components';
+import { Button } from '@fluentui/react-components';
 
 const EmployeeDetailsTemplate: React.FC<EmployeeDetailsInterface> = ({
   employeeDetails,

@@ -42,7 +42,7 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
                 const response = await fetch('https://www.universal-tutorial.com/api/countries/', {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDkyOTcxMjd9.PDvGSX0hNSpkzlOATL2tiafzENdzzmK74m2LItNPbUM`,
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDk3MTc5Nzl9.hzms4RKdz6IdmuQjkXpS4db-PPJtYXp7I7IhGjbBgRU`,
                         'Accept': 'application/json',
                     },
                 });
@@ -91,7 +91,7 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
                 const response = await fetch(`https://www.universal-tutorial.com/api/states/${formdata.country}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDkyOTcxMjd9.PDvGSX0hNSpkzlOATL2tiafzENdzzmK74m2LItNPbUM`,
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDk3MTc5Nzl9.hzms4RKdz6IdmuQjkXpS4db-PPJtYXp7I7IhGjbBgRU`,
                         'Accept': 'application/json',
                     },
                 });
@@ -116,7 +116,7 @@ const PersonalDetailsComponent: React.FC<PersonalDetailsComponentProps> = ({ isM
                 const response = await fetch(`https://www.universal-tutorial.com/api/cities/${formdata.state}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDkyOTcxMjd9.PDvGSX0hNSpkzlOATL2tiafzENdzzmK74m2LItNPbUM`,
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJuaXRpbkBjaXBoZXJzdHVkaW8ubmV0IiwiYXBpX3Rva2VuIjoidWJ6SExFX3dzeC1rZGQyLWZkYzAtNng4eW55NEp4TFNxckRtTlRHYTFRQzNad05UN2N5RlFMdUN4RTYzNzZSVDNNbyJ9LCJleHAiOjE3MDk3MTc5Nzl9.hzms4RKdz6IdmuQjkXpS4db-PPJtYXp7I7IhGjbBgRU`,
                         'Accept': 'application/json',
                     },
                 });

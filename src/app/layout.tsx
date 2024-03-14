@@ -33,25 +33,40 @@ export default function RootLayout({
   }, []);
 
   useEffect(() => {
-    socket.on('message', (message) => {
-      toast(message);
+    const socket = io('http://localhost:8080');
+
+    socket.on('connect', () => {
+      console.log('Socket connected:', socket.id);
     });
 
     socket.on('notification', (data) => {
-      // Update your UI or show a notification based on the approval information
-      toast(data);
+      console.log(data)
+      // Make sure to use the correct property names as sent from your server
+      const notificationMessage = `${data.message}`;
+      toast(notificationMessage); // Display the notification
+    });
 
-      const notificationMessage = ` ${data.message} .`;
-
-      toast(notificationMessage);
-      // Example: Show a notification
-
-      // You can trigger other UI updates or notifications based on the data received
-    })
     return () => {
-      socket.off();
-    }
+      socket.off('connect');
+    };
   }, [socket]);
+
+  // useEffect(() => {
+  //   socket.on('message', (message) => {
+  //     toast(message);
+  //   });
+
+  //   socket.on('notification', (data) => {
+  //     const notificationMessage = ` ${data.message} .`;
+
+  //     toast(notificationMessage);
+  //     // Example: Show a notification
+
+  //   })
+  //   return () => {
+  //     socket.off();
+  //   }
+  // }, [socket]);
 
 
   return (
@@ -64,11 +79,11 @@ export default function RootLayout({
           ) : (
             <main>
               <NextAuthProvider>
-                {/* <Providers> */}
+                <Providers>
 
                   {children}
 
-                {/* </Providers> */}
+                </Providers>
               </NextAuthProvider>
             </main>
           )}

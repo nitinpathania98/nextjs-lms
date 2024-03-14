@@ -1,6 +1,14 @@
 "use client"
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+// import socket io
+
+
+// import toast component
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import io from 'socket.io-client';
+const socket = io('http://localhost:8080');
 
 interface Notification {
   id: number;
@@ -15,21 +23,52 @@ interface Notification {
 const DropdownNotification = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [notifying, setNotifying] = useState(true);
+  const [newNotifications, setNewNotifications] = useState(false); // Track new notifications
+  const trigger = useRef<HTMLAnchorElement>(null);
+  const dropdown = useRef<HTMLDivElement>(null);
 
-  const trigger = useRef<any>(null);
-  const dropdown = useRef<any>(null);
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/notificationLog/getAll');
-        const data: Notification[] = await response.json();
+        const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+          console.error('Token not found. Redirect to login page.');
+          return;
+        }
 
-        if (Array.isArray(data)) {
-          setNotifications(data);
+        const response = await fetch('http://localhost:8080/api/users/user/details', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const userNotification = data[0]?.notifications || [];
+          setNotifications(userNotification);
+          setNewNotifications(true); // Set new notifications
+        } else if (response.status === 401) {
+          // Token expired, try refreshing the token
+          const refreshResponse = await fetch('http://localhost:8080/api/refresh', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+
+          if (refreshResponse.ok) {
+            const { accessToken: newAccessToken } = await refreshResponse.json();
+            localStorage.setItem('accessToken', newAccessToken);
+            // Retry fetching user details with the new access token
+            fetchNotifications();
+          } else {
+            console.error('Failed to refresh token. Redirect to login page.');
+          }
         } else {
-          console.error('Invalid data format for notifications:', data);
+          console.error('Failed to fetch user details');
         }
       } catch (error) {
         console.error('Error fetching notifications:', error);
@@ -40,7 +79,7 @@ const DropdownNotification = () => {
 
     const clickHandler = ({ target }: MouseEvent) => {
       if (!dropdown.current) return;
-      if (!dropdownOpen || (dropdownOpen && (target === trigger.current || dropdown.current.contains(target)))) return;
+      if (!dropdownOpen || (dropdownOpen && (target instanceof Node && (target === trigger.current || dropdown.current.contains(target))))) return;
       setDropdownOpen(false);
     };
 
@@ -59,22 +98,39 @@ const DropdownNotification = () => {
     };
   }, [dropdownOpen]);
 
+
+  const handleNotificationClick = (notificationId: number) => {
+    // Remove the clicked notification
+    setNotifications(prevNotifications => prevNotifications.filter(notification => notification.id !== notificationId));
+  };
+
+ 
+
+  // useEffect(() => {
+  //   socket.on('notification', (data) => {
+  //     console.log("notification", data)
+  //     const notificationMessage = ` ${data.message} .`;
+  //     console.log("show notification", notificationMessage);
+  //     toast(notificationMessage);
+  //   });
+  //   return () => {
+  //     socket.off();
+  //   }
+  // }, []);
+
   return (
     <li className="relative">
       <Link
         ref={trigger}
-        onClick={() => setDropdownOpen(!dropdownOpen)}
+        onClick={() => setDropdownOpen(prevState => !prevState)}
         href="#"
         className="relative flex h-8.5 w-8.5 items-center justify-center rounded-full border-[0.5px] border-stroke bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
       >
-
         <span
-          className={`absolute -top-0.5 right-0 z-1 h-2 w-2 rounded-full bg-emerald-600 ${notifying === false ? 'hidden' : 'inline'
-            }`}
+          className={`absolute -top-0.5 right-0 z-1 h-2 w-2 rounded-full bg-emerald-600 ${newNotifications ? 'inline' : 'hidden'}`}
         >
-          <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full  bg-emerald-600 opacity-75"></span>
+          <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-emerald-600 opacity-75"></span>
         </span>
-
         <svg
           className="fill-current duration-300 ease-in-out"
           width="18"
@@ -92,8 +148,7 @@ const DropdownNotification = () => {
 
       <div
         ref={dropdown}
-        className={`absolute -right-27 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80 ${dropdownOpen ? 'block' : 'hidden'
-          }`}
+        className={`absolute -right-27 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80 ${dropdownOpen ? 'block' : 'hidden'}`}
       >
         <div className="px-4.5 py-3">
           <h5 className="text-sm font-medium text-bodydark2">Notifications</h5>
@@ -101,22 +156,16 @@ const DropdownNotification = () => {
 
         <ul className="flex h-auto flex-col overflow-y-auto">
           {notifications.length > 0 ? (
-            notifications.map((notification) => (
+            notifications.map(notification => (
               <li key={notification.id}>
-                <Link
+                <div // Change Link to div for click handling
+                  onClick={() => handleNotificationClick(notification.id)} // Handle click
                   className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  href="#"
                 >
-                  <p className="text-sm">
-                    <span
-                      className={`text-black dark:text-white ${notification.notification_type === 'status_update' ? 'text-green' : 'text-red'
-                        }`}
-                    >
-                      {notification.message_content}
-                    </span>
+                  <p className={`text-sm ${notification.notification_type === 'status_update' ? 'text-green' : 'text-red'}`}>
+                    {notification.message_content}
                   </p>
-             
-                </Link>
+                </div>
               </li>
             ))
           ) : (

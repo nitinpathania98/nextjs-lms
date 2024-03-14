@@ -30,10 +30,12 @@ function Login() {
         try {
             const url = 'users/login';
             const response: any = await UserLogin(url, formdata);
-            const { accessToken, refreshToken } = response.data;
+            const { UserId,accessToken, refreshToken } = response.data;
 
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
+            localStorage.setItem('UserId', UserId,);
+
 
             if (response.status === 200) {
                 toast.success('User logged in');
